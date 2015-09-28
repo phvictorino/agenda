@@ -2,8 +2,6 @@ package br.com.agenda.controller;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -12,11 +10,11 @@ import br.com.agenda.entidade.Estado;
 import br.com.agenda.service.CidadeService;
 import br.com.agenda.service.EstadoService;
 
-@Controller
+@Controller(value="cidadeController")
 public class CidadeController {
 
 	private Cidade cidade;
-
+	
 	private String nomeCidade;
 	private Estado estadoSelecionado;
 
@@ -26,22 +24,18 @@ public class CidadeController {
 	@Autowired
 	EstadoService estadoService;
 
-	@PostConstruct
-	public void init() {
-		System.out.println("teste");
-	}
-
 	public List<Estado> getListaEstados() {
 		return estadoService.listarTodos();
 	}
 
 	public void salvar() {
-		this.cidade = new Cidade();
-
-		this.cidade.setNome(nomeCidade);
-		this.cidade.setEstado(estadoSelecionado);
-
-		cidadeService.salvar(this.cidade);
+		
+		cidade = new Cidade();
+		
+		cidade.setNome(nomeCidade);
+		cidade.setEstado(estadoSelecionado);
+		
+		cidadeService.salvar(cidade);
 
 		System.out.println("Sucesso!");
 	}
@@ -69,5 +63,6 @@ public class CidadeController {
 	public void setEstadoSelecionado(Estado estadoSelecionado) {
 		this.estadoSelecionado = estadoSelecionado;
 	}
+
 
 }

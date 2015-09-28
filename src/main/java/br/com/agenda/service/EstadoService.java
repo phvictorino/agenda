@@ -24,7 +24,7 @@ public class EstadoService {
 		dao.deletar(estado);
 	}
 	
-	public Estado buscarPorId(long id) {
+	public Estado buscarPorId(Long id) {
 		return dao.buscarPorId(id);
 	}
 	

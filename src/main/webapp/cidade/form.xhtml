@@ -19,17 +19,18 @@
 						<p:inputText id="nome" value="#{cidadeController.nomeCidade}" />
 
 						<p:outputLabel for="estado" value="Estado: " />
-						<p:selectOneMenu id="estado"
+						<p:selectOneMenu id="estado" converter="estadoConverter"
 							value="#{cidadeController.estadoSelecionado}">
 							<f:selectItem itemLabel="Selecione" itemValue="" />
-							<f:selectItems value="#{cidadeController.listaEstados}"  />
+							<f:selectItems var="e" value="#{cidadeController.listaEstados}"
+								itemLabel="#{e.nome}" itemValue="#{e}" />
 						</p:selectOneMenu>
-						
+
 						<div align="center">
-							<p:commandButton actionListener="#{cidadeController.salvar()}"
-								value="Salvar" process="@this"/>
+							<p:commandButton actionListener="#{cidadeController.salvar}"
+								value="Salvar" process="@this" />
 						</div>
-						
+
 					</h:panelGrid>
 				</h:form>
 			</p:fieldset>
