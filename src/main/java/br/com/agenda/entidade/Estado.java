@@ -72,7 +72,7 @@ public class Estado implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Estado [nome=" + nome + "]";
+		return this.nome;
 	}
 
 }

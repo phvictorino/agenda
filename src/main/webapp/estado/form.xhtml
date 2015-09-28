@@ -8,28 +8,23 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:define name="titulo">Formulário de cidades</ui:define>
+	<ui:define name="titulo">Formulário de estados</ui:define>
 
 	<ui:define name="conteudo">
 		<div align="center">
-			<p:fieldset legend="Cadastro de cidade">
+			<p:fieldset legend="Cadastro de estados">
 				<h:form>
 					<h:panelGrid columns="2">
 						<p:outputLabel for="nome" value="Nome: " />
-						<p:inputText id="nome" value="#{cidadeController.nomeCidade}" />
+						<p:inputText id="nome" value="#{estadoController.estado.nome}" />
 
-						<p:outputLabel for="estado" value="Estado: " />
-						<p:selectOneMenu id="estado"
-							value="#{cidadeController.estadoSelecionado}">
-							<f:selectItem itemLabel="Selecione" itemValue="" />
-							<f:selectItems value="#{cidadeController.listaEstados}"  />
-						</p:selectOneMenu>
+						<p:outputLabel for="uf" value="UF: " />
+						<p:inputText id="uf" value="#{estadoController.estado.uf}" />
 						
 						<div align="center">
-							<p:commandButton actionListener="#{cidadeController.salvar()}"
-								value="Salvar" process="@this"/>
+							<p:commandButton actionListener="#{estadoController.salvar()}"
+								value="Salvar" />
 						</div>
-						
 					</h:panelGrid>
 				</h:form>
 			</p:fieldset>

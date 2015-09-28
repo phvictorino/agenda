@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title><ui:insert name="titulo"></ui:insert></title>
+	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/main.css" />
+	<link rel="shortcut icon" href="#{request.contextPath}/resources/icon.ico"/>
+</h:head>
+
+<h:body>
+	<p:growl id="mensagens" />
+	<div style="margin: 10px;" align="center">
+		<h:graphicImage value="/resources/images/banner-top.png"/>
+	</div>
+	<h:form>
+
+		<p:menubar>
+			<p:menuitem value="Ínicio" url="/index.xhtml"/>
+			<p:submenu label="Clientes" icon="ui-icon-person">
+				<p:menuitem value="Adicionar" icon="ui-icon-circle-plus" />
+				<p:menuitem value="Listar" icon="ui-icon-document" />
+			</p:submenu>
+
+			<p:submenu label="Contatos" icon="ui-icon-contact">
+				<p:submenu label="Tipo de Contatos" icon="ui-icon-key">
+					<p:menuitem value="Adicionar" icon="ui-icon-circle-plus" />
+					<p:menuitem value="Listar" icon="ui-icon-document" />
+				</p:submenu>
+				<p:menuitem value="Adicionar" icon="ui-icon-circle-plus" />
+				<p:menuitem value="Listar" icon="ui-icon-document" />
+			</p:submenu>
+
+			<p:submenu label="Locais" icon="ui-icon-home">
+				<p:submenu label="Cidades">
+					<p:menuitem value="Adicionar" url="/cidade/form.xhtml" icon="ui-icon-circle-plus" />
+					<p:menuitem value="Listar" icon="ui-icon-document" />
+				</p:submenu>
+				<p:submenu label="Estados">
+					<p:menuitem value="Adicionar" url="/estado/form.xhtml" icon="ui-icon-circle-plus" />
+					<p:menuitem value="Listar" icon="ui-icon-document" />
+				</p:submenu>
+			</p:submenu>
+		</p:menubar>
+	</h:form>
+	<p:spacer height="5px" />
+	<p:panel>
+		<ui:insert name="conteudo"></ui:insert>
+	</p:panel>
+	<p:spacer height="5px" />
+	<p:panel>
+		<div align="center">Criado e desenvolvido por Pedro H.
+			Victorino.</div>
+	</p:panel>
+</h:body>
+
+</html>
