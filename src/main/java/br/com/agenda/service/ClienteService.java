@@ -12,23 +12,30 @@ import br.com.agenda.entidade.Cliente;
 @Service
 @Transactional
 public class ClienteService {
-	
+
 	@Autowired
 	ClienteDAO dao;
-	
+
 	public Cliente salvar(Cliente cliente) {
 		return dao.salvar(cliente);
 	}
-	
+
 	public void deletar(Cliente cliente) {
 		dao.deletar(cliente);
 	}
-	
+
 	public Cliente buscarPorId(long id) {
-		return dao.buscarPorId(id);
+
+		Cliente cliente = dao.buscarPorId(id);
+
+		if (cliente != null) {
+			cliente.getContatos().size();
+		}
+
+		return cliente;
 	}
-	
-	public List<Cliente> listarTodos(){
+
+	public List<Cliente> listarTodos() {
 		return dao.listarTodos();
 	}
 

@@ -10,31 +10,39 @@ import br.com.agenda.entidade.Estado;
 import br.com.agenda.service.CidadeService;
 import br.com.agenda.service.EstadoService;
 
-@Controller(value="cidadeController")
+@Controller(value = "cidadeController")
 public class CidadeController {
 
 	private Cidade cidade;
-	
+
 	private String nomeCidade;
-	private Estado estadoSelecionado;
+	private Long idEstadoSelecionado;
 
 	@Autowired
 	CidadeService cidadeService;
 
 	@Autowired
 	EstadoService estadoService;
+	
+	public List<Cidade> getListaCidades() {
+		return cidadeService.listarTodos();
+	}
+	
 
 	public List<Estado> getListaEstados() {
+
 		return estadoService.listarTodos();
 	}
 
 	public void salvar() {
-		
+
 		cidade = new Cidade();
 		
-		cidade.setNome(nomeCidade);
-		cidade.setEstado(estadoSelecionado);
+		Estado estadoSelecionado = estadoService.buscarPorId(idEstadoSelecionado);
 		
+		cidade.setEstado(estadoSelecionado);
+		cidade.setNome(nomeCidade);
+
 		cidadeService.salvar(cidade);
 
 		System.out.println("Sucesso!");
@@ -56,12 +64,12 @@ public class CidadeController {
 		this.nomeCidade = nomeCidade;
 	}
 
-	public Estado getEstadoSelecionado() {
-		return estadoSelecionado;
+	public Long getIdEstadoSelecionado() {
+		return idEstadoSelecionado;
 	}
 
-	public void setEstadoSelecionado(Estado estadoSelecionado) {
-		this.estadoSelecionado = estadoSelecionado;
+	public void setIdEstadoSelecionado(Long idEstadoSelecionado) {
+		this.idEstadoSelecionado = idEstadoSelecionado;
 	}
 
 

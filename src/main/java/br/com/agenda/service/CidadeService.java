@@ -24,8 +24,8 @@ public class CidadeService {
 		dao.deletar(cidade);
 	}
 	
-	public void buscarPorId(long id){
-		dao.buscarPorId(id);
+	public Cidade buscarPorId(Long id){
+		return dao.buscarPorId(id);
 	}
 	
 	public List<Cidade> listarTodos() {

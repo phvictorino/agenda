@@ -1,5 +1,7 @@
 package br.com.agenda.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -18,6 +20,10 @@ public class EstadoController {
 		estadoService.salvar(estado);
 		
 		System.out.println("Sucesso!");
+	}
+	
+	public List<Estado> getListaEstados() {
+		return estadoService.listarTodos();
 	}
 
 	public Estado getEstado() {

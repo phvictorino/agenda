@@ -13,25 +13,21 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Contato implements Serializable {
 	
-	private static final long serialVersionUID = 2262859792495838332L;
+
+	private static final long serialVersionUID = -3128374202834562838L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Cliente cliente;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "tipo")
 	private TipoContato tipo;
 	
 	private String contato;
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public TipoContato getTipo() {
 		return tipo;
@@ -49,11 +45,19 @@ public class Contato implements Serializable {
 		this.contato = contato;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -66,14 +70,26 @@ public class Contato implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Contato other = (Contato) obj;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Contato [tipo=" + tipo + "]";
+		return contato;
 	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
 
 }

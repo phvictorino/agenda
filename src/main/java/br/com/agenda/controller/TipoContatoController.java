@@ -1,6 +1,6 @@
 package br.com.agenda.controller;
 
-import javax.annotation.PostConstruct;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +18,10 @@ public class TipoContatoController {
 	@Autowired
 	TipoContatoService tipoContatoService;
 	
+	public List<TipoContato> getListaTiposContato() {
+		return tipoContatoService.listarTodos();
+	}
+	
 	public void salvar() {
 		
 		tipoContato = new TipoContato();
@@ -25,6 +29,8 @@ public class TipoContatoController {
 		tipoContato.setTipo(nomeTipoContato);
 		
 		tipoContatoService.salvar(tipoContato);
+		
+		System.out.println("Sucesso");
 		
 	}
 

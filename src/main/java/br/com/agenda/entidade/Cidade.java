@@ -16,19 +16,11 @@ public class Cidade implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	private String nome;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Estado estado;
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public String getNome() {
 		return nome;
@@ -40,7 +32,7 @@ public class Cidade implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Cidade [nome=" + nome + "]";
+		return nome;
 	}
 
 	@Override
@@ -71,6 +63,14 @@ public class Cidade implements Serializable {
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }
