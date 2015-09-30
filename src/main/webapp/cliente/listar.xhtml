@@ -30,8 +30,8 @@
 							process="contatos tableContatos @this" update="contatos tableContatos @this"
 							icon="ui-icon-carat-1-ne">
 
-							<f:setPropertyActionListener value="#{c.id}"
-								target="#{clienteController.idClienteSelecionado}" />
+							<f:setPropertyActionListener value="#{c}"
+								target="#{clienteController.clienteSelecionado}" />
 
 						</p:commandButton>
 					</p:column>
@@ -43,7 +43,7 @@
 			resizable="false" header="Contatos do cliente selecionado">
 
 			<p:dataTable id="tableContatos" var="c"
-				value="#{clienteController.listaContatosCliente}">
+				value="#{clienteController.listaContatos}">
 
 				<p:column headerText="Contato">
 					<h:outputText value="#{c.contato}" />

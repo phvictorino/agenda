@@ -36,7 +36,16 @@ public class ClienteService {
 	}
 
 	public List<Cliente> listarTodos() {
-		return dao.listarTodos();
+
+		List<Cliente> clientes = dao.listarTodos();
+
+		if (clientes != null) {
+			for (Cliente cliente : clientes) {
+				cliente.getContatos().size();
+			}
+		}
+
+		return clientes;
 	}
 
 }

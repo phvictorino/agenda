@@ -25,7 +25,7 @@ public class Cliente implements Serializable{
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Cidade cidade;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
 	private List<Contato> contatos;
 
 	public String getNome() {

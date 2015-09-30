@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Contato implements Serializable {
@@ -21,11 +22,10 @@ public class Contato implements Serializable {
 	private Long id;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	private Cliente cliente;
+	private TipoContato tipo;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "tipo")
-	private TipoContato tipo;
+	private Cliente cliente;
 	
 	private String contato;
 

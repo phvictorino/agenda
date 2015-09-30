@@ -21,7 +21,7 @@ public class Estado  implements Serializable {
 	private String nome;
 	private String uf;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "estado")
 	private List<Cidade> cidades;
 
 	public Long getId() {

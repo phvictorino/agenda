@@ -14,11 +14,12 @@
 		<div align="center">
 			<p:fieldset legend="Cadastro de cidade">
 				<h:form>
-					<h:panelGrid id="form" columns="3">
+					<h:panelGrid id="form" columns="4">
 
 						<p:outputLabel for="nome" value="Nome do cliente: " />
 						<p:inputText id="nome" value="#{clienteController.cliente.nome}" />
 
+						<p:outputLabel value="" />
 						<p:outputLabel value="" />
 
 						<p:outputLabel for="cidade" value="Cidade: " />
@@ -30,13 +31,17 @@
 						</p:selectOneMenu>
 
 						<p:outputLabel value="" />
+						<p:outputLabel value="" />
 
-						<p:outputLabel for="contato" value="Contato: " />
-						<p:selectOneMenu id="contato"
-							value="#{clienteController.idContatoSelecionado}">
+						<p:outputLabel for="nomeContato" value="Contato: " />
+						<p:inputText id="nomeContato"
+							value="#{clienteController.nomeContato}" />
+
+						<p:selectOneMenu id="tipoContato"
+							value="#{clienteController.idTipoContatoSelecionado}">
 							<f:selectItem itemLabel="Selecione" itemValue="" />
-							<f:selectItems value="#{clienteController.listaContatos}" var="c"
-								itemLabel="#{c.contato}" itemValue="#{c.id}" />
+							<f:selectItems value="#{clienteController.listaTiposContato}"
+								var="tp" itemLabel="#{tp.tipo}" itemValue="#{tp.id}" />
 						</p:selectOneMenu>
 
 						<p:commandButton icon="ui-icon-circle-plus"
@@ -49,14 +54,14 @@
 					<p:spacer height="5" />
 
 					<p:dataTable id="listaContatos" var="c"
-						value="#{clienteController.listaContatosCliente}"
-						style="text-align: center;"
+						value="#{clienteController.listaContatos}"
+						style="text-align: center; width: 400px;"
 						emptyMessage="Nenhum contato adicionado.">
 						<p:column headerText="Nome">
 							<h:outputText value="#{c.contato}" />
 						</p:column>
 
-						<p:column headerText="Estado">
+						<p:column headerText="Tipo de contato">
 							<h:outputText value="#{c.tipo}" />
 						</p:column>
 
@@ -65,8 +70,8 @@
 								actionListener="#{clienteController.removerContato}"
 								icon="ui-icon-circle-minus" process="listaContatos @this"
 								update="listaContatos @this">
-								<f:setPropertyActionListener value="#{c.id}"
-									target="#{clienteController.idContatoSelecionado}" />
+								<f:setPropertyActionListener value="#{c}"
+									target="#{clienteController.contatoSelecionado}" />
 							</p:commandButton>
 						</p:column>
 					</p:dataTable>
