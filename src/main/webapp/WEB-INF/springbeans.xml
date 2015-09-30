@@ -16,6 +16,17 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory"></property>
 	</bean>
 
+
+	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+		<property name="scopes">
+			<map>
+				<entry key="view">
+					<bean class="br.com.agenda.scopes.ViewScope" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />

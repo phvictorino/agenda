@@ -11,19 +11,35 @@
 	<ui:define name="titulo">Lista de estados</ui:define>
 
 	<ui:define name="conteudo">
-		<div align="center" style="text-align: center">
-			<p:fieldset legend="Lista de estados">
-				<p:dataTable var="e" value="#{estadoController.listaEstados}">
-					<p:column headerText="Nome">
-						<h:outputText value="#{e.nome}" />
-					</p:column>
+		<p:fieldset legend="Lista de estados">
+			<p:dataTable var="e" value="#{estadoController.listaEstados}"
+				id="tableEstados">
+				<p:column headerText="Nome">
+					<h:outputText value="#{e.nome}" />
+				</p:column>
 
-					<p:column headerText="UF">
-						<h:outputText value="#{e.uf}" />
-					</p:column>
-				</p:dataTable>
-			</p:fieldset>
-		</div>
+				<p:column headerText="UF">
+					<h:outputText value="#{e.uf}" />
+				</p:column>
+
+				<p:column>
+					<p:commandButton actionListener="#{estadoController.editar}"
+						icon="ui-icon-pencil">
+						<f:setPropertyActionListener value="#{e}"
+							target="#{estadoController.estado}"></f:setPropertyActionListener>
+					</p:commandButton>
+
+					<p:commandButton action="#{estadoController.excluir}"
+						icon="ui-icon-closethick" update="tableEstados"
+						process="tableEstados">
+
+						<f:setPropertyActionListener value="#{e}"
+							target="#{estadoController.estado}" />
+
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</p:fieldset>
 	</ui:define>
 
 </ui:composition>

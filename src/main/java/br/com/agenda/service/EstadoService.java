@@ -20,8 +20,8 @@ public class EstadoService {
 		return dao.salvar(estado);
 	}
 	
-	public void deletar(Estado estado) {
-		dao.deletar(estado);
+	public void deletar(Long id) {
+		dao.deletar(id);
 	}
 	
 	public Estado buscarPorId(Long id) {

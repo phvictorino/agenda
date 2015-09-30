@@ -1,5 +1,6 @@
 package br.com.agenda.utils;
 
+import java.io.IOException;
 import java.util.Map;
 
 import javax.faces.application.FacesMessage;
@@ -7,7 +8,17 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 public class UtilsGeral {
-	
+
+	public static void redirecionar(String link) {
+		try {
+			manterMensagens();
+			FacesContext.getCurrentInstance().getExternalContext().redirect(link);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 	public static String obterUrl() {
 		return obterExternalContext().getRequestContextPath();
 	}

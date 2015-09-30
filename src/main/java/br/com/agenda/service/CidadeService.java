@@ -20,8 +20,8 @@ public class CidadeService {
 		return dao.salvar(cidade);
 	}
 	
-	public void remover(Cidade cidade) {
-		dao.deletar(cidade);
+	public void remover(Long id) {
+		dao.deletar(id);
 	}
 	
 	public Cidade buscarPorId(Long id){

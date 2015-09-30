@@ -11,16 +11,32 @@
 	<ui:define name="titulo">Lista de Tipo de Contatos</ui:define>
 
 	<ui:define name="conteudo">
-		<div align="center" style="text-align: center">
-			<p:fieldset legend="Lista de Tipo de Contatos">
-				<p:dataTable var="tp" value="#{tipoContatoController.listaTiposContato}">
-					<p:column headerText="Tipo">
-						<h:outputText value="#{tp.tipo}" />
-					</p:column>
+		<p:fieldset legend="Lista de Tipo de Contatos">
+			<p:dataTable var="tp" id="tableTiposContato"
+				value="#{tipoContatoController.listaTiposContato}">
+				<p:column headerText="Tipo">
+					<h:outputText value="#{tp.tipo}" />
+				</p:column>
 
-				</p:dataTable>
-			</p:fieldset>
-		</div>
+				<p:column>
+					<p:commandButton actionListener="#{tipoContatoController.editar}"
+						icon="ui-icon-pencil">
+						<f:setPropertyActionListener value="#{tp}"
+							target="#{tipoContatoController.tipoContato}"></f:setPropertyActionListener>
+					</p:commandButton>
+
+					<p:commandButton action="#{tipoContatoController.excluir}"
+						icon="ui-icon-closethick" update="tableTiposContato"
+						process="tableTiposContato">
+
+						<f:setPropertyActionListener value="#{tp}"
+							target="#{tipoContatoController.tipoContato}" />
+
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+		</p:fieldset>
 	</ui:define>
 
 </ui:composition>

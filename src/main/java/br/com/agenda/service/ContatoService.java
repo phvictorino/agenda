@@ -20,8 +20,8 @@ public class ContatoService {
 		return dao.salvar(contato);
 	}
 
-	public void deletar(Contato contato) {
-		dao.deletar(contato);
+	public void deletar(Long id) {
+		dao.deletar(id);
 	}
 
 	public Contato buscarPorId(long id) {

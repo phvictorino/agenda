@@ -1,5 +1,7 @@
 package br.com.agenda.controller;
 
+import java.io.IOException;
+import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +25,7 @@ import br.com.agenda.utils.UtilsGeral;
 
 @Controller
 @ManagedBean
+//@Scope("view")
 public class ClienteController {
 
 	private Cliente cliente = new Cliente();
@@ -33,6 +36,8 @@ public class ClienteController {
 	private Long idCidadeSelecionada;
 	private Long idTipoContatoSelecionado;
 	private String nomeContato;
+
+	private String nomeCliente;
 
 	@Autowired
 	ClienteService clienteService;
@@ -45,25 +50,39 @@ public class ClienteController {
 
 	@Autowired
 	CidadeService cidadeService;
-	
+
 	public ClienteController() {
-		
+
 	}
 
 	@PostConstruct
 	public void init() {
 		this.listaTiposContato = tipoContatoService.listarTodos();
-
+		this.contatoSelecionado = new Contato();
 		listaContatos = new ArrayList<Contato>();
+	}
+
+	public void novo() {
+		idCidadeSelecionada = null;
+		cliente = new Cliente();
+		listaContatos = new ArrayList<Contato>();
+		nomeCliente = "";
+		idTipoContatoSelecionado = null;
+		UtilsGeral.redirecionar(UtilsGeral.obterUrl() + "/cliente/form.xhtml");
 	}
 
 	public void salvar() {
 
 		Cidade cidadeSelecionada = cidadeService.buscarPorId(idCidadeSelecionada);
+
+		cliente.setNome(nomeCliente);
 		cliente.setContatos(listaContatos);
 		cliente.setCidade(cidadeSelecionada);
 		clienteService.salvar(cliente);
 
+		UtilsGeral.adicionarMsgInfo("Usuário salvo com sucesso!");
+
+		UtilsGeral.redirecionar("listar.xhtml");
 	}
 
 	public List<Cliente> getListaClientes() {
@@ -76,15 +95,26 @@ public class ClienteController {
 
 	public void adicionarContato() {
 
-		contatoSelecionado = new Contato();
 		contatoSelecionado.setContato(nomeContato);
+		contatoSelecionado.setCliente(cliente);
 		TipoContato tp = tipoContatoService.buscarPorId(idTipoContatoSelecionado);
 		contatoSelecionado.setTipo(tp);
-		listaContatos.add(contatoSelecionado);
+
+		if (contatoSelecionado != null) {
+			listaContatos.add(contatoSelecionado);
+		}
+
+		nomeContato = "";
+		idTipoContatoSelecionado = null;
+		contatoSelecionado = new Contato();
 
 	}
 
 	public void removerContato() {
+
+		if (contatoSelecionado.getId() != null) {
+			contatoService.deletar(contatoSelecionado.getId());
+		}
 
 		listaContatos.remove(contatoSelecionado);
 
@@ -93,6 +123,24 @@ public class ClienteController {
 	public void verContatosCliente() {
 
 		this.listaContatos = this.clienteSelecionado.getContatos();
+
+	}
+
+	public void editarCliente() {
+
+		cliente = clienteSelecionado;
+
+		listaContatos = clienteSelecionado.getContatos();
+
+		idCidadeSelecionada = clienteSelecionado.getCidade().getId();
+
+		nomeCliente = clienteSelecionado.getNome();
+
+		try {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("form.xhtml");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
 
@@ -158,6 +206,14 @@ public class ClienteController {
 
 	public void setClienteSelecionado(Cliente clienteSelecionado) {
 		this.clienteSelecionado = clienteSelecionado;
+	}
+
+	public String getNomeCliente() {
+		return nomeCliente;
+	}
+
+	public void setNomeCliente(String nomeCliente) {
+		this.nomeCliente = nomeCliente;
 	}
 
 }

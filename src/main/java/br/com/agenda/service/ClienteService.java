@@ -20,8 +20,8 @@ public class ClienteService {
 		return dao.salvar(cliente);
 	}
 
-	public void deletar(Cliente cliente) {
-		dao.deletar(cliente);
+	public void deletar(Long id) {
+		dao.deletar(id);
 	}
 
 	public Cliente buscarPorId(long id) {

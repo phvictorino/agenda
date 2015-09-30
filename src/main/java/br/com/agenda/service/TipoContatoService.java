@@ -20,8 +20,8 @@ public class TipoContatoService {
 		return dao.salvar(tp);
 	}
 	
-	public void deletar(TipoContato tp) {
-		dao.deletar(tp);
+	public void deletar(Long id) {
+		dao.deletar(id);
 	}
 	
 	public TipoContato buscarPorId(long id) {

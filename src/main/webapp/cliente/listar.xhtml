@@ -11,36 +11,46 @@
 	<ui:define name="titulo">Lista de Clientes</ui:define>
 
 	<ui:define name="conteudo">
-		<div align="center" style="text-align: center">
-			<p:fieldset legend="Lista de Clientes">
-				<p:dataTable id="tableClientes" var="c"
-					value="#{clienteController.listaClientes}">,
+		<p:fieldset legend="Lista de Clientes">
+			<p:dataTable id="tableClientes" var="c"
+				value="#{clienteController.listaClientes}">,
 				
 					<p:column headerText="Nome">
-						<h:outputText value="#{c.nome}" />
-					</p:column>
+					<h:outputText value="#{c.nome}" />
+				</p:column>
 
-					<p:column headerText="Cidade">
-						<h:outputText value="#{c.cidade}" />
-					</p:column>
+				<p:column headerText="Cidade">
+					<h:outputText value="#{c.cidade}" />
+				</p:column>
 
-					<p:column headerText="Contatos">
-						<p:commandButton action="#{clienteController.verContatosCliente}"
-							oncomplete="PF('contatos').show();"
-							process="contatos tableContatos @this" update="contatos tableContatos @this"
-							icon="ui-icon-carat-1-ne">
+				<p:column headerText="Contatos">
+					<p:commandButton action="#{clienteController.verContatosCliente}"
+						oncomplete="PF('contatos').show();"
+						process="contatos tableContatos @this"
+						update="contatos tableContatos @this" icon="ui-icon-carat-1-ne">
 
-							<f:setPropertyActionListener value="#{c}"
-								target="#{clienteController.clienteSelecionado}" />
+						<f:setPropertyActionListener value="#{c}"
+							target="#{clienteController.clienteSelecionado}" />
 
-						</p:commandButton>
-					</p:column>
-				</p:dataTable>
-			</p:fieldset>
-		</div>
+					</p:commandButton>
+
+					<p:commandButton action="#{clienteController.editarCliente}"
+						icon="ui-icon-pencil">
+
+						<f:setPropertyActionListener value="#{c}"
+							target="#{clienteController.clienteSelecionado}" />
+
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</p:fieldset>
 
 		<p:dialog id="contatos" widgetVar="contatos" width="600px"
 			resizable="false" header="Contatos do cliente selecionado">
+
+			<h3>
+				<p:outputLabel value="#{clienteController.clienteSelecionado.nome}" />
+			</h3>
 
 			<p:dataTable id="tableContatos" var="c"
 				value="#{clienteController.listaContatos}">

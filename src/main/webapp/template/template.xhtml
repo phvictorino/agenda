@@ -16,21 +16,24 @@
 </h:head>
 
 <h:body>
-	<p:growl id="mensagens" />
+	<p:growl id="mensagens" autoUpdate="true" life="5000" showDetail="true" />
 	<div style="margin: 10px;" align="center">
-		<h:graphicImage value="/resources/images/banner-top.png" />
+		<h:graphicImage value="/resources/images/banner-top.png"
+			url="#{facesContext.externalContext.requestContextPath}/" />
 	</div>
 	<h:form>
 
 		<p:menubar>
 			<p:menuitem value="Ínicio" url="/index.xhtml" />
 			<p:submenu label="Clientes" icon="ui-icon-person">
-				<p:menuitem value="Adicionar" url="/cliente/form.xhtml"
+				<p:menuitem value="Adicionar"
+					actionListener="#{clienteController.novo}"
 					icon="ui-icon-circle-plus" />
 				<p:menuitem value="Listar" url="/cliente/listar.xhtml"
 					icon="ui-icon-document" />
 				<p:submenu label="Tipo de Contatos" icon="ui-icon-tag">
-					<p:menuitem value="Adicionar" url="/tipoContato/form.xhtml"
+					<p:menuitem value="Adicionar"
+						actionListener="#{tipoContatoController.novo}"
 						icon="ui-icon-circle-plus" />
 					<p:menuitem value="Listar" url="/tipoContato/listar.xhtml"
 						icon="ui-icon-document" />
@@ -39,13 +42,15 @@
 
 			<p:submenu label="Locais" icon="ui-icon-home">
 				<p:submenu label="Cidades">
-					<p:menuitem value="Adicionar" url="/cidade/form.xhtml"
+					<p:menuitem value="Adicionar"
+						actionListener="#{cidadeController.novo}"
 						icon="ui-icon-circle-plus" />
 					<p:menuitem value="Listar" url="/cidade/listar.xhtml"
 						icon="ui-icon-document" />
 				</p:submenu>
 				<p:submenu label="Estados">
-					<p:menuitem value="Adicionar" url="/estado/form.xhtml"
+					<p:menuitem value="Adicionar"
+						actionListener="#{estadoController.novo}"
 						icon="ui-icon-circle-plus" />
 					<p:menuitem value="Listar" url="/estado/listar.xhtml"
 						icon="ui-icon-document" />
@@ -53,11 +58,13 @@
 			</p:submenu>
 		</p:menubar>
 	</h:form>
-	<p:spacer height="5px" />
-	<p:panel>
-		<ui:insert name="conteudo"></ui:insert>
-	</p:panel>
-	<p:spacer height="5px" />
+	<p:spacer height="2px" />
+	<div style="text-align: center; margin: 0 auto; width: 50%">
+		<p:panel>
+			<ui:insert name="conteudo"></ui:insert>
+		</p:panel>
+	</div>
+	<p:spacer height="2px" />
 	<p:panel>
 		<div align="center">Criado e desenvolvido por Pedro H.
 			Victorino.</div>

@@ -29,9 +29,11 @@ public class GenericDAO<T> {
 
 	}
 
-	public void deletar(T objeto) {
+	public void deletar(Long id) {
 //		entityManager.getTransaction().begin();
-		entityManager.remove(objeto);
+		Query query = entityManager.createQuery("DELETE FROM " + getTypeClass().getName() + " WHERE id = :id");
+		query.setParameter("id", id);
+		query.executeUpdate();
 //		entityManager.getTransaction().commit();
 	}
 

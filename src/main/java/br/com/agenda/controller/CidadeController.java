@@ -2,6 +2,10 @@ package br.com.agenda.controller;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.persistence.PersistenceException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -9,8 +13,10 @@ import br.com.agenda.entidade.Cidade;
 import br.com.agenda.entidade.Estado;
 import br.com.agenda.service.CidadeService;
 import br.com.agenda.service.EstadoService;
+import br.com.agenda.utils.UtilsGeral;
 
-@Controller(value = "cidadeController")
+@Controller
+@ManagedBean
 public class CidadeController {
 
 	private Cidade cidade;
@@ -23,11 +29,43 @@ public class CidadeController {
 
 	@Autowired
 	EstadoService estadoService;
-	
+
+	@PostConstruct
+	public void init() {
+		cidade = new Cidade();
+	}
+
+	public void novo() {
+		this.nomeCidade = "";
+		cidade = new Cidade();
+		UtilsGeral.redirecionar(UtilsGeral.obterUrl() + "/cidade/form.xhtml");
+	}
+
+	public void editar() {
+		nomeCidade = cidade.getNome();
+		if (idEstadoSelecionado != null) {
+			idEstadoSelecionado = cidade.getEstado().getId();
+		} else {
+			idEstadoSelecionado = null;
+		}
+		UtilsGeral.redirecionar(UtilsGeral.obterUrl() + "/cidade/form.xhtml");
+	}
+
+	public void excluir() {
+
+		try {
+			cidadeService.remover(cidade.getId());
+			UtilsGeral.adicionarMsgInfo("Cidade removida.");
+		} catch (PersistenceException e) {
+			UtilsGeral.adicionarMsgErro("Estado vinculado à cliente. Impossível excluir.");
+			e.printStackTrace();
+		}
+
+	}
+
 	public List<Cidade> getListaCidades() {
 		return cidadeService.listarTodos();
 	}
-	
 
 	public List<Estado> getListaEstados() {
 
@@ -36,16 +74,22 @@ public class CidadeController {
 
 	public void salvar() {
 
-		cidade = new Cidade();
-		
-		Estado estadoSelecionado = estadoService.buscarPorId(idEstadoSelecionado);
-		
+		Estado estadoSelecionado;
+
+		if (idEstadoSelecionado != null) {
+			estadoSelecionado = estadoService.buscarPorId(idEstadoSelecionado);
+		} else {
+			estadoSelecionado = null;
+		}
+
 		cidade.setEstado(estadoSelecionado);
 		cidade.setNome(nomeCidade);
 
 		cidadeService.salvar(cidade);
 
-		System.out.println("Sucesso!");
+		UtilsGeral.adicionarMsgInfo("Cidade salva com sucesso!");
+
+		UtilsGeral.redirecionar(UtilsGeral.obterUrl() + "/cidade/listar.xhtml");
 	}
 
 	public Cidade getCidade() {
@@ -71,6 +115,5 @@ public class CidadeController {
 	public void setIdEstadoSelecionado(Long idEstadoSelecionado) {
 		this.idEstadoSelecionado = idEstadoSelecionado;
 	}
-
 
 }
