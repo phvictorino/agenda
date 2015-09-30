@@ -24,7 +24,8 @@
 	<h:form>
 
 		<p:menubar>
-			<p:menuitem value="Ínicio" url="/index.xhtml" />
+			<p:menuitem style="margin-left: 10px" />
+			<p:menuitem value="Ínicio" url="/index.xhtml" icon="ui-icon-note" style="width: 65px" />
 			<p:submenu label="Clientes" icon="ui-icon-person">
 				<p:menuitem value="Adicionar"
 					actionListener="#{clienteController.novo}"
@@ -59,7 +60,7 @@
 		</p:menubar>
 	</h:form>
 	<p:spacer height="2px" />
-	<div style="text-align: center; margin: 0 auto; width: 50%">
+	<div style="text-align: center; margin: 0 auto; width: 70%">
 		<p:panel>
 			<ui:insert name="conteudo"></ui:insert>
 		</p:panel>
