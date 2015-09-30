@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.agenda.dao.ClienteDAO;
+import br.com.agenda.entidade.Cidade;
 import br.com.agenda.entidade.Cliente;
+import br.com.agenda.entidade.Estado;
 
 @Service
 @Transactional
@@ -46,6 +48,18 @@ public class ClienteService {
 		}
 
 		return clientes;
+	}
+
+	public List<Cliente> buscarPorCidade(Cidade cidade) {
+		return dao.buscarPorCidade(cidade);
+	}
+
+	public List<Cliente> buscarPorEstado(Estado estado) {
+		return dao.buscarPorEstado(estado);
+	}
+
+	public List<Cliente> buscarPorNome(String nome) {
+		return dao.buscarPorNome(nome);
 	}
 
 }
