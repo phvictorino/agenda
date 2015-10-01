@@ -43,11 +43,13 @@ public class CidadeController {
 
 	public void editar() {
 		nomeCidade = cidade.getNome();
-		if (idEstadoSelecionado != null) {
+		
+		if (cidade.getEstado().getId() != null) {
 			idEstadoSelecionado = cidade.getEstado().getId();
 		} else {
 			idEstadoSelecionado = null;
 		}
+		
 		UtilsGeral.redirecionar("/cidade/form.xhtml");
 	}
 
@@ -56,9 +58,8 @@ public class CidadeController {
 		try {
 			cidadeService.remover(cidade.getId());
 			UtilsGeral.adicionarMsgInfo("Cidade removida.");
-		} catch (PersistenceException e) {
-			UtilsGeral.adicionarMsgErro("Estado vinculado à cliente. Impossível excluir.");
-			e.printStackTrace();
+		} catch (Exception e) {
+			UtilsGeral.adicionarMsgErro("Cidade vinculada à cliente. Impossível excluir.");
 		}
 
 	}

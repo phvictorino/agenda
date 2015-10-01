@@ -51,9 +51,6 @@ public class TestCliente {
 		cliente.setNome("Jão");
 		cliente.setContatos(contatos);
 		
-		
-		
-		
 	}
 	
 }
