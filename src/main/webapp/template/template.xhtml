@@ -30,7 +30,7 @@
 				<p:menuitem value="Adicionar"
 					actionListener="#{clienteController.novo}"
 					icon="ui-icon-circle-plus" />
-				<p:menuitem value="Listar" url="/cliente/listar.xhtml"
+				<p:menuitem value="Listar" actionListener="#{clienteController.listar}"
 					icon="ui-icon-document" />
 				<p:submenu label="Tipo de Contatos" icon="ui-icon-tag">
 					<p:menuitem value="Adicionar"

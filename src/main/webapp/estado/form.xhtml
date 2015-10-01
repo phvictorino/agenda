@@ -11,6 +11,7 @@
 	<ui:define name="titulo">Formulário de estados</ui:define>
 
 	<ui:define name="conteudo">
+		<div align="center">
 			<p:fieldset legend="Cadastro de estados">
 				<h:form>
 					<h:panelGrid columns="2">
@@ -19,14 +20,15 @@
 
 						<p:outputLabel for="uf" value="UF: " />
 						<p:inputText id="uf" value="#{estadoController.estado.uf}" />
-						
+
 						<div align="center">
-							<p:commandButton actionListener="#{estadoController.salvar()}"
+							<p:commandButton actionListener="#{estadoController.salvar}"
 								value="Salvar" />
 						</div>
 					</h:panelGrid>
 				</h:form>
 			</p:fieldset>
+		</div>
 	</ui:define>
 
 </ui:composition>

@@ -11,19 +11,23 @@
 	<ui:define name="titulo">Formulário de Tipo de Contato</ui:define>
 
 	<ui:define name="conteudo">
+		<div align="center">
 			<p:fieldset legend="Cadastro de Tipo de Contato">
 				<h:form>
 					<h:panelGrid columns="2">
 						<p:outputLabel for="nome" value="Nome: " />
-						<p:inputText id="nome" value="#{tipoContatoController.nomeTipoContato}" />
-						
+						<p:inputText id="nome"
+							value="#{tipoContatoController.nomeTipoContato}" />
+
 						<div align="center">
-							<p:commandButton actionListener="#{tipoContatoController.salvar()}"
+							<p:commandButton
+								actionListener="#{tipoContatoController.salvar}"
 								value="Salvar" />
 						</div>
 					</h:panelGrid>
 				</h:form>
 			</p:fieldset>
+		</div>
 	</ui:define>
 
 </ui:composition>

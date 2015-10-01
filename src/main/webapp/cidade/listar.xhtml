@@ -11,39 +11,41 @@
 	<ui:define name="titulo">Lista de cidades</ui:define>
 
 	<ui:define name="conteudo">
-		<p:fieldset legend="Lista de cidades">
-			<p:dataTable var="c" value="#{cidadeController.listaCidades}"
-				id="tableCidades">
-				<p:column headerText="Nome">
-					<h:outputText value="#{c.nome}" />
-				</p:column>
+		<div align="center">
+			<p:fieldset legend="Lista de cidades">
+				<p:dataTable var="c" value="#{cidadeController.listaCidades}"
+					id="tableCidades" emptyMessage="Nenhuma cidade encontrada.">
+					<p:column headerText="Nome">
+						<h:outputText value="#{c.nome}" />
+					</p:column>
 
-				<p:column headerText="Estado">
-					<h:outputText value="#{c.estado}" />
-				</p:column>
+					<p:column headerText="Estado">
+						<h:outputText value="#{c.estado}" />
+					</p:column>
 
-				<p:column>
-					<h:form>
-						<p:commandButton action="#{cidadeController.editar}"
-							icon="ui-icon-pencil">
+					<p:column>
+						<h:form>
+							<p:commandButton action="#{cidadeController.editar}"
+								icon="ui-icon-pencil">
 
-							<f:setPropertyActionListener value="#{c}"
-								target="#{cidadeController.cidade}" />
+								<f:setPropertyActionListener value="#{c}"
+									target="#{cidadeController.cidade}" />
 
-						</p:commandButton>
+							</p:commandButton>
 
-						<p:commandButton action="#{cidadeController.excluir}"
-							icon="ui-icon-closethick" update="tableCidades"
-							process="tableCidades">
+							<p:commandButton action="#{cidadeController.excluir}"
+								icon="ui-icon-closethick" update="tableCidades"
+								process="tableCidades">
 
-							<f:setPropertyActionListener value="#{c}"
-								target="#{cidadeController.cidade}" />
+								<f:setPropertyActionListener value="#{c}"
+									target="#{cidadeController.cidade}" />
 
-						</p:commandButton>
-					</h:form>
-				</p:column>
-			</p:dataTable>
-		</p:fieldset>
+							</p:commandButton>
+						</h:form>
+					</p:column>
+				</p:dataTable>
+			</p:fieldset>
+		</div>
 	</ui:define>
 
 </ui:composition>

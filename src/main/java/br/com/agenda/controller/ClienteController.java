@@ -1,7 +1,6 @@
 package br.com.agenda.controller;
 
 import java.io.IOException;
-import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,16 +9,17 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import br.com.agenda.entidade.Cidade;
 import br.com.agenda.entidade.Cliente;
 import br.com.agenda.entidade.Contato;
+import br.com.agenda.entidade.Estado;
 import br.com.agenda.entidade.TipoContato;
 import br.com.agenda.service.CidadeService;
 import br.com.agenda.service.ClienteService;
 import br.com.agenda.service.ContatoService;
+import br.com.agenda.service.EstadoService;
 import br.com.agenda.service.TipoContatoService;
 import br.com.agenda.utils.UtilsGeral;
 
@@ -31,11 +31,17 @@ public class ClienteController {
 	private Cliente cliente = new Cliente();
 	private List<TipoContato> listaTiposContato;
 	private List<Contato> listaContatos;
+	private List<Cliente> listaClientes;
+	private List<Cidade> listaCidades;
 	private Contato contatoSelecionado;
 	private Cliente clienteSelecionado;
 	private Long idCidadeSelecionada;
 	private Long idTipoContatoSelecionado;
 	private String nomeContato;
+
+	private Long idCidadeFiltro;
+	private Long idEstadoFiltro;
+	private String nomeClienteFiltro;
 
 	private String nomeCliente;
 
@@ -51,6 +57,9 @@ public class ClienteController {
 	@Autowired
 	CidadeService cidadeService;
 
+	@Autowired
+	EstadoService estadoService;
+
 	public ClienteController() {
 
 	}
@@ -60,15 +69,28 @@ public class ClienteController {
 		this.listaTiposContato = tipoContatoService.listarTodos();
 		this.contatoSelecionado = new Contato();
 		listaContatos = new ArrayList<Contato>();
+		listaCidades = cidadeService.listarTodos();
+		listaClientes = clienteService.listarTodos();
+	}
+
+	public void listar() {
+		listaCidades = new ArrayList<Cidade>();
+		nomeClienteFiltro = "";
+		idCidadeFiltro = null;
+		idEstadoFiltro = null;
+		listaClientes = clienteService.listarTodos();
+		UtilsGeral.redirecionar("/cliente/listar.xhtml");
 	}
 
 	public void novo() {
+		listaCidades = cidadeService.listarTodos();
+		this.listaTiposContato = tipoContatoService.listarTodos();
 		idCidadeSelecionada = null;
 		cliente = new Cliente();
 		listaContatos = new ArrayList<Contato>();
 		nomeCliente = "";
 		idTipoContatoSelecionado = null;
-		UtilsGeral.redirecionar(UtilsGeral.obterUrl() + "/cliente/form.xhtml");
+		UtilsGeral.redirecionar("/cliente/form.xhtml");
 	}
 
 	public void salvar() {
@@ -82,31 +104,35 @@ public class ClienteController {
 
 		UtilsGeral.adicionarMsgInfo("Usuário salvo com sucesso!");
 
-		UtilsGeral.redirecionar("listar.xhtml");
+		UtilsGeral.redirecionar("/cliente/listar.xhtml");
 	}
 
-	public List<Cliente> getListaClientes() {
-		return clienteService.listarTodos();
-	}
+	//	public List<Cliente> getListaClientes() {
+	//		return clienteService.listarTodos();
+	//	}
 
-	public List<Cidade> getListaCidades() {
-		return cidadeService.listarTodos();
-	}
+	//	public List<Cidade> getListaCidades() {
+	//		return cidadeService.listarTodos();
+	//	}
 
 	public void adicionarContato() {
 
-		contatoSelecionado.setContato(nomeContato);
-		contatoSelecionado.setCliente(cliente);
-		TipoContato tp = tipoContatoService.buscarPorId(idTipoContatoSelecionado);
-		contatoSelecionado.setTipo(tp);
+		if (nomeContato != null && !nomeContato.isEmpty()) {
+			contatoSelecionado.setContato(nomeContato);
+			contatoSelecionado.setCliente(cliente);
+			TipoContato tp = tipoContatoService.buscarPorId(idTipoContatoSelecionado);
+			contatoSelecionado.setTipo(tp);
 
-		if (contatoSelecionado != null) {
-			listaContatos.add(contatoSelecionado);
+			if (contatoSelecionado != null) {
+				listaContatos.add(contatoSelecionado);
+			}
+
+			nomeContato = "";
+			idTipoContatoSelecionado = null;
+			contatoSelecionado = new Contato();
+		} else {
+			UtilsGeral.adicionarMsgErro("Digite o nome do contato para adicionar.");
 		}
-
-		nomeContato = "";
-		idTipoContatoSelecionado = null;
-		contatoSelecionado = new Contato();
 
 	}
 
@@ -115,7 +141,6 @@ public class ClienteController {
 		if (contatoSelecionado.getId() != null) {
 			contatoService.deletar(contatoSelecionado.getId());
 		}
-
 		listaContatos.remove(contatoSelecionado);
 
 	}
@@ -127,21 +152,40 @@ public class ClienteController {
 	}
 
 	public void editarCliente() {
-
+		listaCidades = cidadeService.listarTodos();
 		cliente = clienteSelecionado;
-
 		listaContatos = clienteSelecionado.getContatos();
-
+		this.listaTiposContato = tipoContatoService.listarTodos();
 		idCidadeSelecionada = clienteSelecionado.getCidade().getId();
-
 		nomeCliente = clienteSelecionado.getNome();
 
-		try {
-			FacesContext.getCurrentInstance().getExternalContext().redirect("form.xhtml");
-		} catch (IOException e) {
-			e.printStackTrace();
+		UtilsGeral.redirecionar("/cliente/form.xhtml");
+
+	}
+
+	public List<Estado> getListaEstados() {
+		return estadoService.listarTodos();
+	}
+
+	public void aplicarFiltrosClientes() {
+
+		List<Cliente> clientes = clienteService.buscarPorFiltros(idCidadeFiltro, idEstadoFiltro, nomeClienteFiltro);
+
+		if (clientes != null) {
+			this.listaClientes = clientes;
+		} else {
+			UtilsGeral.adicionarMsgErro("Nenhum cliente encontrado com o filtro aplicado.");
 		}
 
+	}
+
+	public void cidadesDoEstadoSelecionado() {
+
+		Estado estado = estadoService.buscarPorId(idEstadoFiltro);
+
+		if (estado != null) {
+			listaCidades = estado.getCidades();
+		}
 	}
 
 	public Long getIdCidadeSelecionada() {
@@ -214,6 +258,46 @@ public class ClienteController {
 
 	public void setNomeCliente(String nomeCliente) {
 		this.nomeCliente = nomeCliente;
+	}
+
+	public Long getIdCidadeFiltro() {
+		return idCidadeFiltro;
+	}
+
+	public void setIdCidadeFiltro(Long idCidadeFiltro) {
+		this.idCidadeFiltro = idCidadeFiltro;
+	}
+
+	public Long getIdEstadoFiltro() {
+		return idEstadoFiltro;
+	}
+
+	public void setIdEstadoFiltro(Long idEstadoFiltro) {
+		this.idEstadoFiltro = idEstadoFiltro;
+	}
+
+	public String getNomeClienteFiltro() {
+		return nomeClienteFiltro;
+	}
+
+	public void setNomeClienteFiltro(String nomeClienteFiltro) {
+		this.nomeClienteFiltro = nomeClienteFiltro;
+	}
+
+	public void setListaClientes(List<Cliente> listaClientes) {
+		this.listaClientes = listaClientes;
+	}
+
+	public void setListaCidades(List<Cidade> listaCidades) {
+		this.listaCidades = listaCidades;
+	}
+
+	public List<Cidade> getListaCidades() {
+		return listaCidades;
+	}
+
+	public List<Cliente> getListaClientes() {
+		return listaClientes;
 	}
 
 }

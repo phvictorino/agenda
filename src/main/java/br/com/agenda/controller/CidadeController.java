@@ -38,7 +38,7 @@ public class CidadeController {
 	public void novo() {
 		this.nomeCidade = "";
 		cidade = new Cidade();
-		UtilsGeral.redirecionar(UtilsGeral.obterUrl() + "/cidade/form.xhtml");
+		UtilsGeral.redirecionar("/cidade/form.xhtml");
 	}
 
 	public void editar() {
@@ -48,7 +48,7 @@ public class CidadeController {
 		} else {
 			idEstadoSelecionado = null;
 		}
-		UtilsGeral.redirecionar(UtilsGeral.obterUrl() + "/cidade/form.xhtml");
+		UtilsGeral.redirecionar("/cidade/form.xhtml");
 	}
 
 	public void excluir() {
@@ -89,7 +89,7 @@ public class CidadeController {
 
 		UtilsGeral.adicionarMsgInfo("Cidade salva com sucesso!");
 
-		UtilsGeral.redirecionar(UtilsGeral.obterUrl() + "/cidade/listar.xhtml");
+		UtilsGeral.redirecionar("/cidade/listar.xhtml");
 	}
 
 	public Cidade getCidade() {

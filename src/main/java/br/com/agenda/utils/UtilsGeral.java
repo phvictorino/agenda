@@ -12,7 +12,7 @@ public class UtilsGeral {
 	public static void redirecionar(String link) {
 		try {
 			manterMensagens();
-			FacesContext.getCurrentInstance().getExternalContext().redirect(link);
+			FacesContext.getCurrentInstance().getExternalContext().redirect(obterUrl() + link);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

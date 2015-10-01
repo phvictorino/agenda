@@ -22,7 +22,7 @@ public class EstadoController {
 
 	public void novo() {
 		estado = new Estado();
-		UtilsGeral.redirecionar(UtilsGeral.obterUrl() + "/estado/form.xhtml");
+		UtilsGeral.redirecionar("/estado/form.xhtml");
 	}
 
 	public void salvar() {
@@ -30,11 +30,11 @@ public class EstadoController {
 
 		UtilsGeral.adicionarMsgInfo("Estado salvo com sucesso.");
 
-		UtilsGeral.redirecionar(UtilsGeral.obterUrl() + "/estado/listar.xhtml");
+		UtilsGeral.redirecionar("/estado/listar.xhtml");
 	}
 
 	public void editar() {
-		UtilsGeral.redirecionar(UtilsGeral.obterUrl() + "/estado/form.xhtml");
+		UtilsGeral.redirecionar("/estado/form.xhtml");
 	}
 
 	public void excluir() {

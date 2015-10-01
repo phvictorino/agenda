@@ -8,82 +8,84 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:define name="titulo">Formulário de cidades</ui:define>
+	<ui:define name="titulo">Formulário de cliente</ui:define>
 
 	<ui:define name="conteudo">
-		<p:fieldset legend="Cadastro de cidade">
-			<h:form>
-				<h:panelGrid id="form" columns="4">
+		<div align="center">
+			<p:fieldset legend="Cadastro de cliente">
+				<h:form>
+					<h:panelGrid id="form" columns="4">
 
-					<p:outputLabel for="nome" value="Nome do cliente: " />
-					<p:inputText id="nome" value="#{clienteController.nomeCliente}" />
+						<p:outputLabel for="nome" value="Nome do cliente: " />
+						<p:inputText id="nome" value="#{clienteController.nomeCliente}" />
 
-					<p:outputLabel value="" />
-					<p:outputLabel value="" />
+						<p:outputLabel value="" />
+						<p:outputLabel value="" />
 
-					<p:outputLabel for="cidade" value="Cidade: " />
-					<p:selectOneMenu id="cidade"
-						value="#{clienteController.idCidadeSelecionada}">
-						<f:selectItem itemLabel="Selecione" itemValue="" />
-						<f:selectItems value="#{clienteController.listaCidades}" var="c"
-							itemLabel="#{c.nome}" itemValue="#{c.id}" />
-					</p:selectOneMenu>
+						<p:outputLabel for="cidade" value="Cidade: " />
+						<p:selectOneMenu id="cidade"
+							value="#{clienteController.idCidadeSelecionada}">
+							<f:selectItem itemLabel="Selecione" itemValue="" />
+							<f:selectItems value="#{clienteController.listaCidades}" var="c"
+								itemLabel="#{c.nome}" itemValue="#{c.id}" />
+						</p:selectOneMenu>
 
-					<p:outputLabel value="" />
-					<p:outputLabel value="" />
+						<p:outputLabel value="" />
+						<p:outputLabel value="" />
 
-					<p:outputLabel for="nomeContato" value="Contato: " />
-					<p:inputText id="nomeContato"
-						value="#{clienteController.nomeContato}" />
+						<p:outputLabel for="nomeContato" value="Contato: " />
+						<p:inputText id="nomeContato"
+							value="#{clienteController.nomeContato}" />
 
-					<p:selectOneMenu id="tipoContato"
-						value="#{clienteController.idTipoContatoSelecionado}">
-						<f:selectItem itemLabel="Selecione" itemValue="" />
-						<f:selectItems value="#{clienteController.listaTiposContato}"
-							var="tp" itemLabel="#{tp.tipo}" itemValue="#{tp.id}" />
-					</p:selectOneMenu>
+						<p:selectOneMenu id="tipoContato"
+							value="#{clienteController.idTipoContatoSelecionado}">
+							<f:selectItem itemLabel="Selecione" itemValue="" />
+							<f:selectItems value="#{clienteController.listaTiposContato}"
+								var="tp" itemLabel="#{tp.tipo}" itemValue="#{tp.id}" />
+						</p:selectOneMenu>
 
-					<p:commandButton icon="ui-icon-circle-plus"
-						actionListener="#{clienteController.adicionarContato}"
-						update="listaContatos @this form"
-						process="listaContatos @this form" />
+						<p:commandButton icon="ui-icon-circle-plus"
+							actionListener="#{clienteController.adicionarContato}"
+							update="listaContatos @this form"
+							process="listaContatos @this form" />
 
-				</h:panelGrid>
+					</h:panelGrid>
 
-				<p:spacer height="5" />
+					<p:spacer height="5" />
 
-				<p:dataTable id="listaContatos" var="c"
-					value="#{clienteController.listaContatos}"
-					style="text-align: center; width: 400px;"
-					emptyMessage="Nenhum contato adicionado.">
-					<p:column headerText="Nome">
-						<h:outputText value="#{c.contato}" />
-					</p:column>
+					<p:dataTable id="listaContatos" var="c"
+						value="#{clienteController.listaContatos}"
+						style="text-align: center; width: 400px;"
+						emptyMessage="Nenhum contato adicionado.">
+						<p:column headerText="Nome">
+							<h:outputText value="#{c.contato}" />
+						</p:column>
 
-					<p:column headerText="Tipo de contato">
-						<h:outputText value="#{c.tipo}" />
-					</p:column>
+						<p:column headerText="Tipo de contato">
+							<h:outputText value="#{c.tipo}" />
+						</p:column>
 
-					<p:column>
-						<p:commandButton action="#{clienteController.removerContato}"
-							icon="ui-icon-circle-minus" process="listaContatos @this"
-							update="listaContatos @this">
-							<f:setPropertyActionListener value="#{c}"
-								target="#{clienteController.contatoSelecionado}" />
-						</p:commandButton>
-					</p:column>
-				</p:dataTable>
+						<p:column>
+							<p:commandButton action="#{clienteController.removerContato}"
+								icon="ui-icon-circle-minus" process="listaContatos @this"
+								update="listaContatos @this">
+								<f:setPropertyActionListener value="#{c}"
+									target="#{clienteController.contatoSelecionado}" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
 
-				<p:spacer height="5" />
+					<p:spacer height="5" />
 
-				<div align="center">
-					<p:commandButton actionListener="#{clienteController.salvar}"
-						value="Salvar" ajax="false" update="mensagens" process="mensagens"
-						icon="ui-icon-disk" />
-				</div>
+					<div align="center">
+						<p:commandButton actionListener="#{clienteController.salvar}"
+							value="Salvar" ajax="false" update="mensagens"
+							process="mensagens" icon="ui-icon-disk" />
+					</div>
 
-			</h:form>
-		</p:fieldset>
+				</h:form>
+			</p:fieldset>
+		</div>
 	</ui:define>
 
 </ui:composition>

@@ -12,10 +12,56 @@
 
 	<ui:define name="conteudo">
 		<p:fieldset legend="Lista de Clientes">
+			<div align="center">
+
+				<h:form id="formFiltros">
+
+					<h:panelGrid id="filtrosClientes" columns="3">
+
+						<p:outputLabel for="nome" value="Nome:" />
+						<p:inputText id="nome" style="width: 190px"
+							value="#{clienteController.nomeClienteFiltro}" />
+
+						<h:outputText value="" />
+
+						<p:outputLabel for="estado" value="Estado: " />
+						<p:selectOneMenu id="estado" style="width: 200px"
+							value="#{clienteController.idEstadoFiltro}">
+							<f:selectItem itemLabel="Selecione" itemValue="" />
+							<f:selectItems value="#{clienteController.listaEstados}" var="e"
+								itemLabel="#{e.nome}" itemValue="#{e.id}" />
+							<p:ajax event="change"
+								listener="#{clienteController.cidadesDoEstadoSelecionado}"
+								update="cidade @this" process="cidade @this" />
+
+						</p:selectOneMenu>
+
+						<h:outputText value="" />
+
+						<p:outputLabel for="cidade" value="Cidade: " />
+						<p:selectOneMenu id="cidade" style="width: 200px"
+							value="#{clienteController.idCidadeFiltro}">
+							<f:selectItem itemLabel="Selecione" itemValue="" />
+							<f:selectItems value="#{clienteController.listaCidades}" var="c"
+								itemLabel="#{c.nome}" itemValue="#{c.id}" />
+						</p:selectOneMenu>
+
+						<p:commandButton icon="ui-icon-search"
+							action="#{clienteController.aplicarFiltrosClientes}"
+							style="width: 50px;" update="tableClientes formFiltros"
+							process="tableClientes formFiltros" />
+
+					</h:panelGrid>
+				</h:form>
+			</div>
+
+			<p:spacer height="5" />
+
 			<p:dataTable id="tableClientes" var="c"
-				value="#{clienteController.listaClientes}">,
-				
-					<p:column headerText="Nome">
+				value="#{clienteController.listaClientes}"
+				emptyMessage="Nenhum cliente encontrado.">
+
+				<p:column headerText="Nome">
 					<h:outputText value="#{c.nome}" />
 				</p:column>
 
@@ -23,11 +69,11 @@
 					<h:outputText value="#{c.cidade}" />
 				</p:column>
 
-				<p:column headerText="Contatos">
+				<p:column>
 					<p:commandButton action="#{clienteController.verContatosCliente}"
 						oncomplete="PF('contatos').show();"
 						process="contatos tableContatos @this"
-						update="contatos tableContatos @this" icon="ui-icon-carat-1-ne">
+						update="contatos tableContatos @this" icon="ui-icon-carat-1-ne" label="Ver contatos">
 
 						<f:setPropertyActionListener value="#{c}"
 							target="#{clienteController.clienteSelecionado}" />
@@ -35,7 +81,7 @@
 					</p:commandButton>
 
 					<p:commandButton action="#{clienteController.editarCliente}"
-						icon="ui-icon-pencil">
+						icon="ui-icon-pencil" label="Editar">
 
 						<f:setPropertyActionListener value="#{c}"
 							target="#{clienteController.clienteSelecionado}" />

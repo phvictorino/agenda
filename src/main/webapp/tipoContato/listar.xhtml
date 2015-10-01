@@ -13,7 +13,8 @@
 	<ui:define name="conteudo">
 		<p:fieldset legend="Lista de Tipo de Contatos">
 			<p:dataTable var="tp" id="tableTiposContato"
-				value="#{tipoContatoController.listaTiposContato}">
+				value="#{tipoContatoController.listaTiposContato}"
+				emptyMessage="Nenhum tipo de contrato encontrado.">
 				<p:column headerText="Tipo">
 					<h:outputText value="#{tp.tipo}" />
 				</p:column>

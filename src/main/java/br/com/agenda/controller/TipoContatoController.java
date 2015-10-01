@@ -31,17 +31,22 @@ public class TipoContatoController {
 	public void novo() {
 		tipoContato = new TipoContato();
 		nomeTipoContato = "";
-		UtilsGeral.redirecionar(UtilsGeral.obterUrl() + "/tipoContato/form.xhtml");
+		UtilsGeral.redirecionar("/tipoContato/form.xhtml");
 	}
 
 	public void editar() {
 		nomeTipoContato = tipoContato.getTipo();
-		UtilsGeral.redirecionar(UtilsGeral.obterUrl() + "/tipoContato/form.xhtml");
+		UtilsGeral.redirecionar("/tipoContato/form.xhtml");
 	}
 
 	public void excluir() {
-		tipoContatoService.deletar(tipoContato.getId());
-		UtilsGeral.adicionarMsgInfo("Tipo de contato excluído com sucesso.");
+
+		try {
+			tipoContatoService.deletar(tipoContato.getId());
+			UtilsGeral.adicionarMsgInfo("Tipo de contato excluído com sucesso.");
+		} catch (Exception e) {
+			UtilsGeral.adicionarMsgErro("Existe um cliente utilizando esse tipo de contato. Impossível excluir.");
+		}
 
 	}
 
@@ -56,7 +61,7 @@ public class TipoContatoController {
 		tipoContatoService.salvar(tipoContato);
 
 		UtilsGeral.adicionarMsgInfo("Tipo de contato salvo com sucesso.");
-		UtilsGeral.redirecionar(UtilsGeral.obterUrl() + "/tipoContato/listar.xhtml");
+		UtilsGeral.redirecionar("/tipoContato/listar.xhtml");
 
 	}
 

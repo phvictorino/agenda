@@ -44,22 +44,16 @@ public class ClienteService {
 		if (clientes != null) {
 			for (Cliente cliente : clientes) {
 				cliente.getContatos().size();
+				cliente.getCidade().getId();
+				cliente.getCidade().getEstado().getId();
 			}
 		}
 
 		return clientes;
 	}
 
-	public List<Cliente> buscarPorCidade(Cidade cidade) {
-		return dao.buscarPorCidade(cidade);
-	}
-
-	public List<Cliente> buscarPorEstado(Estado estado) {
-		return dao.buscarPorEstado(estado);
-	}
-
-	public List<Cliente> buscarPorNome(String nome) {
-		return dao.buscarPorNome(nome);
+	public List<Cliente> buscarPorFiltros(Long idCidade, Long idEstado, String nome) {
+		return dao.buscarPorCidade(idCidade, idEstado, nome);
 	}
 
 }
