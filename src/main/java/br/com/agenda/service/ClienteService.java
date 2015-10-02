@@ -53,7 +53,18 @@ public class ClienteService {
 	}
 
 	public List<Cliente> buscarPorFiltros(Long idCidade, Long idEstado, String nome) {
-		return dao.buscarPorCidade(idCidade, idEstado, nome);
+
+		List<Cliente> clientes = dao.buscarPorFiltros(idCidade, idEstado, nome);
+
+		if (clientes != null) {
+			for (Cliente cliente : clientes) {
+				cliente.getContatos().size();
+				cliente.getCidade().getId();
+				cliente.getCidade().getEstado().getId();
+			}
+		}
+
+		return clientes;
 	}
 
 }

@@ -73,7 +73,8 @@
 					<p:commandButton action="#{clienteController.verContatosCliente}"
 						oncomplete="PF('contatos').show();"
 						process="contatos tableContatos @this"
-						update="contatos tableContatos @this" icon="ui-icon-carat-1-ne" label="Ver contatos">
+						update="contatos tableContatos @this" icon="ui-icon-carat-1-ne"
+						label="Ver contatos">
 
 						<f:setPropertyActionListener value="#{c}"
 							target="#{clienteController.clienteSelecionado}" />
@@ -99,7 +100,8 @@
 			</h3>
 
 			<p:dataTable id="tableContatos" var="c"
-				value="#{clienteController.listaContatos}">
+				value="#{clienteController.listaContatos}"
+				emptyMessage="Nenhum contato atribuído para esse cliente.">
 
 				<p:column headerText="Contato">
 					<h:outputText value="#{c.contato}" />

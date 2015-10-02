@@ -18,7 +18,7 @@ public class ClienteDAO extends GenericDAO<Cliente> {
 	private EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
-	public List<Cliente> buscarPorCidade(Long idCidade, Long idEstado, String nome) {
+	public List<Cliente> buscarPorFiltros(Long idCidade, Long idEstado, String nome) {
 		List<Cliente> clientes = null;
 		StringBuilder sql = new StringBuilder();
 

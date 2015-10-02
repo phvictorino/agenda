@@ -101,6 +101,7 @@ public class ClienteController {
 		cliente.setContatos(listaContatos);
 		cliente.setCidade(cidadeSelecionada);
 		clienteService.salvar(cliente);
+		listaClientes = clienteService.listarTodos();
 
 		UtilsGeral.adicionarMsgInfo("Usuário salvo com sucesso!");
 
