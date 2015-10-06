@@ -14,13 +14,18 @@ import javax.persistence.OneToMany;
 @Entity
 public class Cliente implements Serializable{
 
-	private static final long serialVersionUID = -6301331767742510968L;
+	
+	public static final Integer CLIENTE_ATIVO = 1;
+	public static final Integer CLIENTE_INATIVO = 2;
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String nome;
+	
+	private Integer situacao;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Cidade cidade;
@@ -83,6 +88,14 @@ public class Cliente implements Serializable{
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public Integer getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(Integer situacao) {
+		this.situacao = situacao;
 	}
 
 }

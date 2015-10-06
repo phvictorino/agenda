@@ -1,12 +1,12 @@
 package br.com.agenda.controller;
 
-import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,6 +38,10 @@ public class ClienteController {
 	private Long idCidadeSelecionada;
 	private Long idTipoContatoSelecionado;
 	private String nomeContato;
+	private Integer situacaoCliente;
+	
+	private Integer clienteAtivo = Cliente.CLIENTE_ATIVO;
+	private Integer clienteInativo = Cliente.CLIENTE_INATIVO;
 
 	private Long idCidadeFiltro;
 	private Long idEstadoFiltro;
@@ -70,7 +74,7 @@ public class ClienteController {
 		this.contatoSelecionado = new Contato();
 		listaContatos = new ArrayList<Contato>();
 		listaCidades = cidadeService.listarTodos();
-		listaClientes = clienteService.listarTodos();
+		listaClientes = clienteService.listarTodosAtivos();
 	}
 
 	public void listar() {
@@ -78,7 +82,8 @@ public class ClienteController {
 		nomeClienteFiltro = "";
 		idCidadeFiltro = null;
 		idEstadoFiltro = null;
-		listaClientes = clienteService.listarTodos();
+		situacaoCliente = Cliente.CLIENTE_ATIVO;
+		listaClientes = clienteService.listarTodosAtivos();
 		UtilsGeral.redirecionar("/cliente/listar.xhtml");
 	}
 
@@ -91,12 +96,15 @@ public class ClienteController {
 		nomeCliente = "";
 		idTipoContatoSelecionado = null;
 		UtilsGeral.redirecionar("/cliente/form.xhtml");
+		
+		
 	}
 
 	public void salvar() {
 
 		Cidade cidadeSelecionada = cidadeService.buscarPorId(idCidadeSelecionada);
-
+		
+		cliente.setSituacao(situacaoCliente);
 		cliente.setNome(nomeCliente);
 		cliente.setContatos(listaContatos);
 		cliente.setCidade(cidadeSelecionada);
@@ -170,7 +178,7 @@ public class ClienteController {
 
 	public void aplicarFiltrosClientes() {
 
-		List<Cliente> clientes = clienteService.buscarPorFiltros(idCidadeFiltro, idEstadoFiltro, nomeClienteFiltro);
+		List<Cliente> clientes = clienteService.buscarPorFiltros(idCidadeFiltro, idEstadoFiltro, nomeClienteFiltro, situacaoCliente);
 
 		if (clientes != null) {
 			this.listaClientes = clientes;
@@ -300,5 +308,30 @@ public class ClienteController {
 	public List<Cliente> getListaClientes() {
 		return listaClientes;
 	}
+
+	public Integer getSituacaoCliente() {
+		return situacaoCliente;
+	}
+
+	public void setSituacaoCliente(Integer situacaoCliente) {
+		this.situacaoCliente = situacaoCliente;
+	}
+
+	public Integer getClienteAtivo() {
+		return clienteAtivo;
+	}
+
+	public void setClienteAtivo(Integer clienteAtivo) {
+		this.clienteAtivo = clienteAtivo;
+	}
+
+	public Integer getClienteInativo() {
+		return clienteInativo;
+	}
+
+	public void setClienteInativo(Integer clienteInativo) {
+		this.clienteInativo = clienteInativo;
+	}
+
 
 }

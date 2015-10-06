@@ -16,6 +16,16 @@
 				<h:form>
 					<h:panelGrid id="form" columns="4">
 
+						<p:outputLabel for="situacao" value="Situação: " />
+						<p:selectOneMenu id="situacao"
+							value="#{clienteController.situacaoCliente}">
+							<f:selectItem itemLabel="Ativo" itemValue="#{clienteController.clienteAtivo}" />
+							<f:selectItem itemLabel="Inativo" itemValue="#{clienteController.clienteInativo}" />
+						</p:selectOneMenu>
+
+						<p:outputLabel value="" />
+						<p:outputLabel value="" />
+
 						<p:outputLabel for="nome" value="Nome do cliente: " />
 						<p:inputText id="nome" value="#{clienteController.nomeCliente}" />
 

@@ -18,6 +18,18 @@
 
 					<h:panelGrid id="filtrosClientes" columns="3">
 
+						<p:outputLabel for="situacao" value="Situação: " />
+						<p:selectOneMenu id="situacao"
+							value="#{clienteController.situacaoCliente}">
+							<f:selectItem itemLabel="Todos" itemValue=""/>
+							<f:selectItem itemLabel="Ativo"
+								itemValue="#{clienteController.clienteAtivo}" />
+							<f:selectItem itemLabel="Inativo"
+								itemValue="#{clienteController.clienteInativo}" />
+						</p:selectOneMenu>
+						
+						<h:outputText value="" />
+
 						<p:outputLabel for="nome" value="Nome:" />
 						<p:inputText id="nome" style="width: 190px"
 							value="#{clienteController.nomeClienteFiltro}" />
@@ -27,7 +39,7 @@
 						<p:outputLabel for="estado" value="Estado: " />
 						<p:selectOneMenu id="estado" style="width: 200px"
 							value="#{clienteController.idEstadoFiltro}">
-							<f:selectItem itemLabel="Selecione" itemValue="" />
+							<f:selectItem itemLabel="Todos" itemValue="" />
 							<f:selectItems value="#{clienteController.listaEstados}" var="e"
 								itemLabel="#{e.nome}" itemValue="#{e.id}" />
 							<p:ajax event="change"
@@ -41,7 +53,7 @@
 						<p:outputLabel for="cidade" value="Cidade: " />
 						<p:selectOneMenu id="cidade" style="width: 200px"
 							value="#{clienteController.idCidadeFiltro}">
-							<f:selectItem itemLabel="Selecione" itemValue="" />
+							<f:selectItem itemLabel="Todos" itemValue="" />
 							<f:selectItems value="#{clienteController.listaCidades}" var="c"
 								itemLabel="#{c.nome}" itemValue="#{c.id}" />
 						</p:selectOneMenu>
@@ -67,6 +79,13 @@
 
 				<p:column headerText="Cidade">
 					<h:outputText value="#{c.cidade}" />
+				</p:column>
+
+				<p:column headerText="Situação">
+					<h:outputText value="Ativo"
+						rendered="#{c.situacao eq clienteController.clienteAtivo}" />
+					<h:outputText value="Inativo"
+						rendered="#{c.situacao eq clienteController.clienteInativo}" />
 				</p:column>
 
 				<p:column>

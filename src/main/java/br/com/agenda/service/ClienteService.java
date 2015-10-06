@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.agenda.dao.ClienteDAO;
-import br.com.agenda.entidade.Cidade;
 import br.com.agenda.entidade.Cliente;
-import br.com.agenda.entidade.Estado;
 
 @Service
 @Transactional
@@ -52,9 +50,9 @@ public class ClienteService {
 		return clientes;
 	}
 
-	public List<Cliente> buscarPorFiltros(Long idCidade, Long idEstado, String nome) {
+	public List<Cliente> buscarPorFiltros(Long idCidade, Long idEstado, String nome, Integer situacaoCliente) {
 
-		List<Cliente> clientes = dao.buscarPorFiltros(idCidade, idEstado, nome);
+		List<Cliente> clientes = dao.buscarPorFiltros(idCidade, idEstado, nome, situacaoCliente);
 
 		if (clientes != null) {
 			for (Cliente cliente : clientes) {
@@ -65,6 +63,22 @@ public class ClienteService {
 		}
 
 		return clientes;
+	}
+	
+	public List<Cliente> listarTodosAtivos(){
+		
+		List<Cliente> clientes = dao.listarTodosAtivos();
+
+		if (clientes != null) {
+			for (Cliente cliente : clientes) {
+				cliente.getContatos().size();
+				cliente.getCidade().getId();
+				cliente.getCidade().getEstado().getId();
+			}
+		}
+
+		return clientes;
+		
 	}
 
 }

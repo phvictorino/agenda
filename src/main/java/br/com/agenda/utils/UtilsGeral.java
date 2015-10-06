@@ -1,6 +1,9 @@
 package br.com.agenda.utils;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 import javax.faces.application.FacesMessage;
@@ -9,6 +12,26 @@ import javax.faces.context.FacesContext;
 
 public class UtilsGeral {
 
+	public static String converteDataEmString(Date date) {
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		return formatter.format(date);
+		
+	}
+	
+	public static Date converteStringEmData(String data){
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+	    
+	    try {
+			return (Date)formatter.parse(data);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}  
+		
+	}
+
 	public static void redirecionar(String link) {
 		try {
 			manterMensagens();
@@ -16,7 +39,7 @@ public class UtilsGeral {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public static String obterUrl() {
