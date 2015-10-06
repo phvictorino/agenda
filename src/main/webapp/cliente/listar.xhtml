@@ -21,13 +21,13 @@
 						<p:outputLabel for="situacao" value="Situação: " />
 						<p:selectOneMenu id="situacao"
 							value="#{clienteController.situacaoCliente}">
-							<f:selectItem itemLabel="Todos" itemValue=""/>
+							<f:selectItem itemLabel="Todos" itemValue="" />
 							<f:selectItem itemLabel="Ativo"
 								itemValue="#{clienteController.clienteAtivo}" />
 							<f:selectItem itemLabel="Inativo"
 								itemValue="#{clienteController.clienteInativo}" />
 						</p:selectOneMenu>
-						
+
 						<h:outputText value="" />
 
 						<p:outputLabel for="nome" value="Nome:" />
@@ -71,7 +71,7 @@
 
 			<p:dataTable id="tableClientes" var="c"
 				value="#{clienteController.listaClientes}"
-				emptyMessage="Nenhum cliente encontrado.">
+				emptyMessage="Nenhum cliente encontrado." draggableRows="true">
 
 				<p:column headerText="Nome">
 					<h:outputText value="#{c.nome}" />

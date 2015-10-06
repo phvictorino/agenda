@@ -12,19 +12,19 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Cliente implements Serializable{
+public class Cliente implements Serializable {
 
-	
+	private static final long serialVersionUID = -1375244853694540763L;
+
 	public static final Integer CLIENTE_ATIVO = 1;
 	public static final Integer CLIENTE_INATIVO = 2;
-	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String nome;
-	
+
 	private Integer situacao;
 
 	@ManyToOne(cascade = CascadeType.ALL)

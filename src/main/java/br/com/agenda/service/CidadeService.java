@@ -31,6 +31,5 @@ public class CidadeService {
 	public List<Cidade> listarTodos() {
 		return dao.listarTodos();
 	}
-	
 
 }

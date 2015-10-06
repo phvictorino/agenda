@@ -25,12 +25,14 @@
 
 		<p:menubar>
 			<p:menuitem style="margin-left: 10px" />
-			<p:menuitem value="Ínicio" url="/index.xhtml" icon="ui-icon-note" style="width: 65px" />
+			<p:menuitem value="Ínicio" url="/index.xhtml" icon="ui-icon-note"
+				style="width: 65px" />
 			<p:submenu label="Clientes" icon="ui-icon-person">
 				<p:menuitem value="Adicionar"
 					actionListener="#{clienteController.novo}"
 					icon="ui-icon-circle-plus" />
-				<p:menuitem value="Listar" actionListener="#{clienteController.listar}"
+				<p:menuitem value="Listar"
+					actionListener="#{clienteController.listar}"
 					icon="ui-icon-document" />
 				<p:submenu label="Tipo de Contatos" icon="ui-icon-tag">
 					<p:menuitem value="Adicionar"
@@ -40,6 +42,9 @@
 						icon="ui-icon-document" />
 				</p:submenu>
 			</p:submenu>
+
+			<p:menuitem value="Rotas" icon="ui-icon-signal-diag"
+				style="width: 65px" />
 
 			<p:submenu label="Locais" icon="ui-icon-home">
 				<p:submenu label="Cidades">

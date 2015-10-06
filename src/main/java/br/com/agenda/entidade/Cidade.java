@@ -1,6 +1,7 @@
 package br.com.agenda.entidade;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Cidade implements Serializable {
@@ -17,10 +19,17 @@ public class Cidade implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
 	private String nome;
 
 	@ManyToOne(cascade = CascadeType.ALL)
+	private Rota rota;
+
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Estado estado;
+
+	@OneToMany(mappedBy = "cidade")
+	private List<Cliente> clientes;
 
 	public String getNome() {
 		return nome;
@@ -34,7 +43,6 @@ public class Cidade implements Serializable {
 	public String toString() {
 		return nome;
 	}
-
 
 	public Estado getEstado() {
 		return estado;

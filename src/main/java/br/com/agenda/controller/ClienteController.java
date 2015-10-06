@@ -1,8 +1,6 @@
 package br.com.agenda.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -331,6 +329,10 @@ public class ClienteController {
 
 	public void setClienteInativo(Integer clienteInativo) {
 		this.clienteInativo = clienteInativo;
+	}
+	
+	public boolean isTipoContatoSelecionado() {
+		return (this.idTipoContatoSelecionado != null);
 	}
 
 
