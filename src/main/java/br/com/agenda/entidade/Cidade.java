@@ -85,4 +85,12 @@ public class Cidade implements Serializable {
 		return true;
 	}
 
+	public Rota getRota() {
+		return rota;
+	}
+
+	public void setRota(Rota rota) {
+		this.rota = rota;
+	}
+
 }

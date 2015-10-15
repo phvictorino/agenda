@@ -3,10 +3,14 @@ package br.com.agenda.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.agenda.dao.RotaDAO;
 import br.com.agenda.entidade.Rota;
 
+@Service
+@Transactional
 public class RotaService {
 
 	@Autowired
@@ -25,7 +29,20 @@ public class RotaService {
 	}
 
 	public List<Rota> listarTodos() {
-		return dao.listarTodos();
+
+		List<Rota> rotas;
+
+		rotas = dao.listarTodos();
+
+		if (rotas != null) {
+			for (Rota rota : rotas) {
+				if (rota.getCidades() != null) {
+					rota.getCidades().size();
+				}
+			}
+		}
+
+		return rotas;
 	}
 
 }

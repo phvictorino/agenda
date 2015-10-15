@@ -12,24 +12,35 @@ import br.com.agenda.entidade.Cidade;
 @Service
 @Transactional
 public class CidadeService {
-	
+
 	@Autowired
 	CidadeDAO dao;
-	
-	public Cidade salvar(Cidade cidade){
+
+	public Cidade salvar(Cidade cidade) {
 		return dao.salvar(cidade);
 	}
-	
+
 	public void remover(Long id) {
 		dao.deletar(id);
 	}
-	
-	public Cidade buscarPorId(Long id){
+
+	public Cidade buscarPorId(Long id) {
 		return dao.buscarPorId(id);
 	}
-	
+
 	public List<Cidade> listarTodos() {
-		return dao.listarTodos();
+
+		List<Cidade> cidades = dao.listarTodos();
+
+		if (cidades != null) {
+			for (Cidade cidade : cidades) {
+				if (cidade.getRota() != null) {
+					cidade.getRota().getId();
+				}
+			}
+		}
+
+		return cidades;
 	}
 
 }

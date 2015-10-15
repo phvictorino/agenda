@@ -43,8 +43,13 @@
 				</p:submenu>
 			</p:submenu>
 
-			<p:menuitem value="Rotas" icon="ui-icon-signal-diag"
-				style="width: 65px" />
+
+			<p:submenu label="Rotas" icon="ui-icon-signal-diag">
+				<p:menuitem value="Adicionar" icon="ui-icon-circle-plus"
+					actionListener="#{rotaController.novo}" />
+				<p:menuitem value="Listar" icon="ui-icon-document"
+					url="/rota/listar.xhtml" />
+			</p:submenu>
 
 			<p:submenu label="Locais" icon="ui-icon-home">
 				<p:submenu label="Cidades">

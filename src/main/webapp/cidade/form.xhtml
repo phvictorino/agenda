@@ -26,6 +26,14 @@
 								itemLabel="#{e.nome}" itemValue="#{e.id}" />
 						</p:selectOneMenu>
 
+						<p:outputLabel for="rota" value="Rota: " />
+						<p:selectOneMenu id="rota"
+							value="#{cidadeController.idRotaSelecionada}">
+							<f:selectItem itemLabel="Selecione" itemValue="" />
+							<f:selectItems value="#{cidadeController.rotas}" var="r"
+								itemLabel="#{r.descricao}" itemValue="#{r.id}" />
+						</p:selectOneMenu>
+
 						<div align="center">
 							<p:commandButton actionListener="#{cidadeController.salvar}"
 								value="Salvar" ajax="false" icon="ui-icon-disk" />
