@@ -10,7 +10,15 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+
+import br.com.agenda.entidade.Usuario;
+
 public class UtilsGeral {
+	
+	public static Usuario pegaUsuarioLogado() {
+		return (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	}
 
 	public static String converteDataEmString(Date date) {
 		
