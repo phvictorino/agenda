@@ -8,7 +8,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title><ui:insert name="titulo"></ui:insert></title>
+	<title>Agenda - <ui:insert name="titulo"></ui:insert></title>
 	<link rel="stylesheet" type="text/css"
 		href="#{request.contextPath}/css/main.css" />
 	<link rel="shortcut icon"
@@ -27,6 +27,7 @@
 			<p:menuitem style="margin-left: 10px" />
 			<p:menuitem value="Ínicio" url="/index.xhtml" icon="ui-icon-note"
 				style="width: 65px" />
+				
 			<p:submenu label="Clientes" icon="ui-icon-person">
 				<p:menuitem value="Adicionar"
 					actionListener="#{clienteController.novo}"

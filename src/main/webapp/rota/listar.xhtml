@@ -20,7 +20,7 @@
 						<h:outputText value="#{r.descricao}" />
 					</p:column>
 
-					<p:column style="width: 10%">
+					<p:column style="width: 20%">
 						<p:commandButton oncomplete="PF('cidadesRota').show();"
 							process="@this" update="cidadesRota" label="Ver cidades"
 							icon="ui-icon-carat-1-ne">
@@ -42,7 +42,7 @@
 		</div>
 
 		<p:dialog id="cidadesRota" widgetVar="cidadesRota" width="600px"
-			resizable="false" header="Cidades da rota selecionada">
+			resizable="false" header="Cidades da rota selecionada" modal="true">
 
 			<h3>
 				<p:outputLabel value="#{rotaController.rota.descricao}" />
