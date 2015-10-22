@@ -11,7 +11,7 @@
 			access="isAuthenticaded()" />
 
 		<security:intercept-url pattern="/pages/*"
-			access="hasAuthority('ROLE_USER ROLE_ADMIN')" />
+			access="hasAuthority('ROLE_ADMIN')" />
 
 		<security:intercept-url pattern="/login.xhtml" access="permitAll" />
 		

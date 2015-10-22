@@ -10,7 +10,7 @@
 <h:head>
 	<title>Agenda - <ui:insert name="titulo"></ui:insert></title>
 	<link rel="stylesheet" type="text/css"
-		href="/css/main.css" />
+		href="#{request.contextPath}/resources/css/main.css" />
 	<link rel="shortcut icon"
 		href="#{request.contextPath}/resources/icon.ico" />
 </h:head>
@@ -23,9 +23,9 @@
 	</div>
 	<h:form>
 
-		<p:menubar>
+		<p:menubar rendered="#{facesContext.externalContext.isUserInRole('ROLE_ADMIN')}">
 			<p:menuitem style="margin-left: 10px" />
-			<p:menuitem value="Ínicio" url="/index.xhtml" icon="ui-icon-note"
+			<p:menuitem value="Ínicio" url="/pages/index.xhtml" icon="ui-icon-note"
 				style="width: 65px" />
 				
 			<p:submenu label="Clientes" icon="ui-icon-person">
@@ -68,6 +68,7 @@
 						icon="ui-icon-document" />
 				</p:submenu>
 			</p:submenu>
+			<p:menuitem url="/j_spring_security_logout" value="Logout"  />
 		</p:menubar>
 	</h:form>
 	<p:spacer height="2px" />

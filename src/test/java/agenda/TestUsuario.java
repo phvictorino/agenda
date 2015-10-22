@@ -31,7 +31,7 @@ public class TestUsuario {
 		u.setAtivo(true);
 		u.setEmail("pedro.victorino@gmail.com");
 		u.setLogin("admin");
-		Perfil p = perfilService.buscarPorId(new Long(1));
+		Perfil p = perfilService.buscarPorId(new Long(2));
 		u.setPerfil(p);
 		u.setSenha("123");
 		

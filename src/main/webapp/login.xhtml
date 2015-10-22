@@ -12,21 +12,16 @@
 
 	<ui:define name="conteudo">
 		<div align="center">
-			<form method="post" action="j_spring_security_check">
-				<h2>Login</h2>
-
+			<form action="j_spring_security_check" method="post">
 				<h:panelGrid columns="2">
+					Login:
+					<h:inputText id="usuario" />
 
-					<p:outputLabel for="usuario" value="Usuário" />
-					<p:inputText id="usuario" />
-
-					<p:outputLabel for="senha" value="Senha" />
-					<p:inputText id="senha" />
-
-					<p:commandButton value="Entrar" type="submit" />
+					Senha:
+					<h:inputSecret id="senha" />
 
 				</h:panelGrid>
-
+				<h:commandButton value="Autenticar" />
 			</form>
 		</div>
 	</ui:define>
