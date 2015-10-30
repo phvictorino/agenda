@@ -27,6 +27,10 @@ public class TipoContatoController {
 	public void init() {
 		tipoContato = new TipoContato();
 	}
+	
+	public void listar() {
+		UtilsGeral.redirecionar("/tipoContato/listar.xhtml");
+	}
 
 	public void novo() {
 		tipoContato = new TipoContato();

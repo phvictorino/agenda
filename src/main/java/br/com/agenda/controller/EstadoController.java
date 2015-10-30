@@ -19,6 +19,10 @@ public class EstadoController {
 
 	@Autowired
 	EstadoService estadoService;
+	
+	public void listar() {
+		UtilsGeral.redirecionar("/estado/listar.xhtml");
+	}
 
 	public void novo() {
 		estado = new Estado();

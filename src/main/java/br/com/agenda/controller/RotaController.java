@@ -8,6 +8,8 @@ import javax.faces.bean.ManagedBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.mysql.jdbc.Util;
+
 import br.com.agenda.entidade.Rota;
 import br.com.agenda.service.RotaService;
 import br.com.agenda.utils.UtilsGeral;
@@ -29,6 +31,10 @@ public class RotaController {
 	@PostConstruct
 	public void init() {
 		rotas = rotaService.listarTodos();
+	}
+	
+	public void listar() {
+		UtilsGeral.redirecionar("/rota/listar.xhtml");
 	}
 
 	public void novo() {

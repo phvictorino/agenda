@@ -41,6 +41,10 @@ public class CidadeController {
 		cidade = new Cidade();
 		this.rotas = rotaService.listarTodos();
 	}
+	
+	public void listar() {
+		UtilsGeral.redirecionar("/cidade/listar.xhtml");
+	}
 
 	public void novo() {
 		this.nomeCidade = "";

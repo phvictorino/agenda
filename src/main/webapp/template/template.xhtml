@@ -39,7 +39,7 @@
 					<p:menuitem value="Adicionar"
 						actionListener="#{tipoContatoController.novo}"
 						icon="ui-icon-circle-plus" />
-					<p:menuitem value="Listar" url="/tipoContato/listar.xhtml"
+					<p:menuitem value="Listar" actionListener="#{tipoContatoController.listar}"
 						icon="ui-icon-document" />
 				</p:submenu>
 			</p:submenu>
@@ -49,7 +49,7 @@
 				<p:menuitem value="Adicionar" icon="ui-icon-circle-plus"
 					actionListener="#{rotaController.novo}" />
 				<p:menuitem value="Listar" icon="ui-icon-document"
-					url="/rota/listar.xhtml" />
+					actionListener="#{rotaController.listar}" />
 			</p:submenu>
 
 			<p:submenu label="Locais" icon="ui-icon-home">
@@ -57,14 +57,14 @@
 					<p:menuitem value="Adicionar"
 						actionListener="#{cidadeController.novo}"
 						icon="ui-icon-circle-plus" />
-					<p:menuitem value="Listar" url="/cidade/listar.xhtml"
+					<p:menuitem value="Listar" actionListener="#{cidadeController.listar}"
 						icon="ui-icon-document" />
 				</p:submenu>
 				<p:submenu label="Estados">
 					<p:menuitem value="Adicionar"
 						actionListener="#{estadoController.novo}"
 						icon="ui-icon-circle-plus" />
-					<p:menuitem value="Listar" url="/estado/listar.xhtml"
+					<p:menuitem value="Listar" actionListener="#{estadoController.listar}"
 						icon="ui-icon-document" />
 				</p:submenu>
 			</p:submenu>

@@ -111,7 +111,7 @@ public class ClienteController {
 
 		UtilsGeral.adicionarMsgInfo("Usuário salvo com sucesso!");
 
-		UtilsGeral.redirecionar("/cliente/listar.xhtml");
+		this.listar();
 	}
 
 	//	public List<Cliente> getListaClientes() {

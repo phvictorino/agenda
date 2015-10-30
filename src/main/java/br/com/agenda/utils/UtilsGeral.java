@@ -43,7 +43,7 @@ public class UtilsGeral {
 	public static void redirecionar(String link) {
 		try {
 			manterMensagens();
-			FacesContext.getCurrentInstance().getExternalContext().redirect(obterUrl() + link);
+			FacesContext.getCurrentInstance().getExternalContext().redirect(obterUrl()+ "/pages" + link);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
