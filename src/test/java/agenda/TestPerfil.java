@@ -29,7 +29,7 @@ public class TestPerfil {
 
 		Perfil perfil2 = new Perfil();
 
-		perfil.setDescricao("ROLE_ADMIN");
+		perfil2.setDescricao("ROLE_ADMIN");
 
 		perfilService.salvar(perfil2);
 

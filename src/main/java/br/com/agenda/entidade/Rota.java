@@ -21,6 +21,9 @@ public class Rota implements Serializable {
 
 	private String descricao;
 
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Integer ordem;
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "rota")
 	private List<Cidade> cidades;
 
@@ -46,6 +49,14 @@ public class Rota implements Serializable {
 
 	public void setCidades(List<Cidade> cidades) {
 		this.cidades = cidades;
+	}
+
+	public Integer getOrdem() {
+		return ordem;
+	}
+
+	public void setOrdem(Integer ordem) {
+		this.ordem = ordem;
 	}
 
 	@Override

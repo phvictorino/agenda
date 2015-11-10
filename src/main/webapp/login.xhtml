@@ -12,6 +12,12 @@
 
 	<ui:define name="conteudo">
 		<div align="center">
+			<p:panel rendered="#{loginController.erro}">
+				<div style="color: red;">Login ou senha inválidos.</div>
+			</p:panel>
+
+			<p:spacer height="5" />
+
 			<form action="j_spring_security_check" method="post">
 				<h:panelGrid columns="2">
 					Login:
@@ -21,7 +27,7 @@
 					<h:inputSecret id="senha" />
 
 				</h:panelGrid>
-				<h:commandButton value="Autenticar" />
+				<h:commandButton style="margin-top: 10px" value="Autenticar" />
 			</form>
 		</div>
 	</ui:define>

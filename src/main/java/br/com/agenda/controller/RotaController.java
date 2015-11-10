@@ -4,12 +4,14 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
+import org.primefaces.component.datatable.DataTable;
+import org.primefaces.event.ReorderEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import com.mysql.jdbc.Util;
-
+import br.com.agenda.dao.RotaDAO;
 import br.com.agenda.entidade.Rota;
 import br.com.agenda.service.RotaService;
 import br.com.agenda.utils.UtilsGeral;
@@ -32,7 +34,7 @@ public class RotaController {
 	public void init() {
 		rotas = rotaService.listarTodos();
 	}
-	
+
 	public void listar() {
 		UtilsGeral.redirecionar("/rota/listar.xhtml");
 	}
@@ -40,6 +42,32 @@ public class RotaController {
 	public void novo() {
 		this.rota = new Rota();
 		UtilsGeral.redirecionar("/rota/form.xhtml");
+	}
+
+	public void mudarOrdemLista(ReorderEvent e) {
+		String tabela = ((DataTable) e.getSource()).getClientId();
+
+		DataTable myDatatable = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent(tabela);
+
+		Rota rotaMovida = (Rota) myDatatable.getRowData();
+		List<Rota> listaAposMover = (Rota) myDatatable
+
+		if (rotaMovida != null) {
+
+			rotaMovida.setOrdem(e.getToIndex());
+
+//			for (Rota r : rotas) {
+//				if (r != null) {
+//					if (r.getOrdem() >= e.getToIndex()) {
+//						r.setOrdem(r.getOrdem().intValue() + 1);
+//						rotaService.salvar(r);
+//					}
+//					
+//					if (r.getOrdem().intValue() == 1) 
+//				}
+//			}
+		}
+
 	}
 
 	public void salvar() {
@@ -65,7 +93,6 @@ public class RotaController {
 			e.printStackTrace();
 			UtilsGeral.adicionarMsgInfo("Há cidades relacionadas nessa rota. Impossível excluir.");
 		}
-
 
 		UtilsGeral.redirecionar("/rota/listar.xhtml");
 	}

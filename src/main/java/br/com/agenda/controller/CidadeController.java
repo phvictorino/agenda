@@ -55,6 +55,7 @@ public class CidadeController {
 
 	public void editar() {
 		nomeCidade = cidade.getNome();
+		this.rotas = rotaService.listarTodos();
 		
 		if (cidade.getRota() != null) {
 			idRotaSelecionada = cidade.getRota().getId();

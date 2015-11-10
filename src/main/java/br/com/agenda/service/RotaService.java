@@ -32,7 +32,7 @@ public class RotaService {
 
 		List<Rota> rotas;
 
-		rotas = dao.listarTodos();
+		rotas = dao.listarTodosOrdenadoPorOrdem();
 
 		if (rotas != null) {
 			for (Rota rota : rotas) {
