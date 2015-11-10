@@ -50,7 +50,7 @@ public class RotaController {
 		DataTable myDatatable = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent(tabela);
 
 		Rota rotaMovida = (Rota) myDatatable.getRowData();
-		List<Rota> listaAposMover = (Rota) myDatatable
+//		List<Rota> listaAposMover = (Rota) myDatatable
 
 		if (rotaMovida != null) {
 
