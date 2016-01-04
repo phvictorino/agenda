@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 
 import br.com.agenda.entidade.TipoContato;
@@ -42,7 +43,7 @@ public class TipoContatoController {
 		nomeTipoContato = tipoContato.getTipo();
 		UtilsGeral.redirecionar("/tipoContato/form.xhtml");
 	}
-
+	
 	public void excluir() {
 
 		try {

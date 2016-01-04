@@ -10,40 +10,38 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 
 import br.com.agenda.entidade.Usuario;
 
 public class UtilsGeral {
-	
-	public static Usuario pegaUsuarioLogado() {
-		return (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-	}
+
+	protected static SecurityContextHolderAwareRequestWrapper securityContext;
 
 	public static String converteDataEmString(Date date) {
-		
+
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		return formatter.format(date);
-		
+
 	}
-	
-	public static Date converteStringEmData(String data){
-		
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
-	    
-	    try {
-			return (Date)formatter.parse(data);
+
+	public static Date converteStringEmData(String data) {
+
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
+		try {
+			return (Date) formatter.parse(data);
 		} catch (ParseException e) {
 			e.printStackTrace();
 			return null;
-		}  
-		
+		}
+
 	}
 
 	public static void redirecionar(String link) {
 		try {
 			manterMensagens();
-			FacesContext.getCurrentInstance().getExternalContext().redirect(obterUrl()+ "/pages" + link);
+			FacesContext.getCurrentInstance().getExternalContext().redirect(obterUrl() + "/pages" + link);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -59,7 +57,8 @@ public class UtilsGeral {
 	}
 
 	public static Map<String, Object> obterSessaoMap() {
-		return FacesContext.getCurrentInstance() != null ? FacesContext.getCurrentInstance().getExternalContext().getSessionMap() : null;
+		return FacesContext.getCurrentInstance() != null
+				? FacesContext.getCurrentInstance().getExternalContext().getSessionMap() : null;
 	}
 
 	public static ExternalContext obterExternalContext() {

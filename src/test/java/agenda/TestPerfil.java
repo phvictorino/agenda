@@ -23,15 +23,15 @@ public class TestPerfil {
 
 		Perfil perfil = new Perfil();
 
-		perfil.setDescricao("ROLE_USER");
+		perfil.setDescricao("ROLE_DISTRIBUIDOR");
 
 		perfilService.salvar(perfil);
 
-		Perfil perfil2 = new Perfil();
-
-		perfil2.setDescricao("ROLE_ADMIN");
-
-		perfilService.salvar(perfil2);
+//		Perfil perfil2 = new Perfil();
+//
+//		perfil2.setDescricao("ROLE_ADMIN");
+//
+//		perfilService.salvar(perfil2);
 
 	}
 

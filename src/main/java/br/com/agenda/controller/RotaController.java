@@ -45,28 +45,42 @@ public class RotaController {
 	}
 
 	public void mudarOrdemLista(ReorderEvent e) {
-		String tabela = ((DataTable) e.getSource()).getClientId();
+//		String tabela = ((DataTable) e.getSource()).getClientId();
 
-		DataTable myDatatable = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent(tabela);
+		DataTable myDatatable = (DataTable) e.getSource();
 
 		Rota rotaMovida = (Rota) myDatatable.getRowData();
-//		List<Rota> listaAposMover = (Rota) myDatatable
+		// List<Rota> listaAposMover = (Rota) myDatatable
 
-		if (rotaMovida != null) {
-
-			rotaMovida.setOrdem(e.getToIndex());
-
-//			for (Rota r : rotas) {
-//				if (r != null) {
-//					if (r.getOrdem() >= e.getToIndex()) {
-//						r.setOrdem(r.getOrdem().intValue() + 1);
-//						rotaService.salvar(r);
+//		if (rotaMovida != null) {
+//
+//			Integer ordemNova = e.getToIndex() + 1;
+//			Integer ordemAntiga = rotaMovida.getOrdem();
+//
+//			if (ordemNova > ordemAntiga) {
+//				for (Rota r : rotas) {
+//					if (r != null && !r.equals(rotaMovida)) {
+//						if (r.getOrdem() <= ordemNova && r.getOrdem() >= ordemAntiga) {
+//							r.setOrdem(r.getOrdem().intValue() - 1);
+//							rotaService.salvar(r);
+//						}
 //					}
-//					
-//					if (r.getOrdem().intValue() == 1) 
+//				}
+//			} else {
+//				for (Rota r : rotas) {
+//					if (r != null && !r.equals(rotaMovida)) {
+//						if (r.getOrdem() >= ordemNova && r.getOrdem() <= ordemAntiga) {
+//							r.setOrdem(r.getOrdem().intValue() + 1);
+//							rotaService.salvar(r);
+//						}
+//					}
 //				}
 //			}
-		}
+//
+//			rotaMovida.setOrdem(ordemNova);
+//
+//			rotaService.salvar(rotaMovida);
+//		}
 
 	}
 

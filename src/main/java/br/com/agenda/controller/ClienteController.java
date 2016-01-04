@@ -2,6 +2,7 @@ package br.com.agenda.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;

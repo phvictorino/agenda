@@ -27,7 +27,8 @@
 					<h:inputSecret id="senha" />
 
 				</h:panelGrid>
-				<h:commandButton style="margin-top: 10px" value="Autenticar" />
+				<h:commandButton style="margin-top: 10px" value="Autenticar"
+					actionListener="#{loginController.carregaUsuarioLogado()}" />
 			</form>
 		</div>
 	</ui:define>
