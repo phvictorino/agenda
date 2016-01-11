@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 
 import br.com.agenda.dao.UsuarioDAO;
 import br.com.agenda.entidade.Usuario;
+import br.com.agenda.utils.UtilsGeral;
 
 @ManagedBean
 @Controller
@@ -37,12 +38,22 @@ public class LoginController {
 		}
 	}
 
-	public boolean estaUsuarioLogado() {
-		carregaUsuarioLogado();
-		return (usuarioLogado == null ? false : true);
+	public Boolean verificarSeExistUsuarioLogado() {
+		if (SecurityContextHolder.getContext().getAuthentication().getName() != null) {
+			if (SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser")) {
+				SecurityContextHolder.clearContext();
+				return false;
+			} else {
+				return true;
+			}
+		} else {
+			SecurityContextHolder.clearContext();
+			return false;
+		}
 	}
 
 	public Usuario getUsuarioLogado() {
+		this.carregaUsuarioLogado();
 		return usuarioLogado;
 	}
 

@@ -28,22 +28,22 @@ public class TipoContatoController {
 	public void init() {
 		tipoContato = new TipoContato();
 	}
-	
+
 	public void listar() {
-		UtilsGeral.redirecionar("/tipoContato/listar.xhtml");
+		UtilsGeral.redirecionar("/admin/tipoContato/listar.xhtml");
 	}
 
 	public void novo() {
 		tipoContato = new TipoContato();
 		nomeTipoContato = "";
-		UtilsGeral.redirecionar("/tipoContato/form.xhtml");
+		UtilsGeral.redirecionar("/admin/tipoContato/form.xhtml");
 	}
 
 	public void editar() {
 		nomeTipoContato = tipoContato.getTipo();
-		UtilsGeral.redirecionar("/tipoContato/form.xhtml");
+		UtilsGeral.redirecionar("/admin/tipoContato/form.xhtml");
 	}
-	
+
 	public void excluir() {
 
 		try {
@@ -66,7 +66,7 @@ public class TipoContatoController {
 		tipoContatoService.salvar(tipoContato);
 
 		UtilsGeral.adicionarMsgInfo("Tipo de contato salvo com sucesso.");
-		UtilsGeral.redirecionar("/tipoContato/listar.xhtml");
+		UtilsGeral.redirecionar("/admin/tipoContato/listar.xhtml");
 
 	}
 

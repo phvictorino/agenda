@@ -26,6 +26,9 @@ public class Cliente extends Pessoa implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Cidade cidade;
 
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Rota rota;
+
 	public List<Contato> getContatos() {
 		return contatos;
 	}
@@ -48,6 +51,14 @@ public class Cliente extends Pessoa implements Serializable {
 
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
+	}
+
+	public Rota getRota() {
+		return rota;
+	}
+
+	public void setRota(Rota rota) {
+		this.rota = rota;
 	}
 
 }

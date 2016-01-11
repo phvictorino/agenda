@@ -18,7 +18,7 @@
 						<h:panelGrid id="form" columns="2">
 
 							<p:outputLabel for="situacao" value="Situação: " />
-							<p:selectOneMenu id="situacao"
+							<p:selectOneMenu id="situacao" disabled="#{clienteController.cliente.id eq null}"
 								value="#{clienteController.situacaoCliente}">
 								<f:selectItem itemLabel="Ativo"
 									itemValue="#{clienteController.clienteAtivo}" />
@@ -39,6 +39,13 @@
 									itemLabel="#{c.nome}" itemValue="#{c.id}" />
 							</p:selectOneMenu>
 
+							<p:outputLabel for="rota" value="Rota: " />
+							<p:selectOneMenu id="rota"
+								value="#{clienteController.idRotaSelecionada}">
+								<f:selectItem itemLabel="Selecione" itemValue="" />
+								<f:selectItems value="#{clienteController.rotas}" var="r"
+									itemLabel="#{r.descricao}" itemValue="#{r.id}" />
+							</p:selectOneMenu>
 
 						</h:panelGrid>
 

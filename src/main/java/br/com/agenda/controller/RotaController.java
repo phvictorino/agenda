@@ -4,14 +4,13 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.ReorderEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import br.com.agenda.dao.RotaDAO;
+import br.com.agenda.entidade.Cliente;
 import br.com.agenda.entidade.Rota;
 import br.com.agenda.service.RotaService;
 import br.com.agenda.utils.UtilsGeral;
@@ -22,6 +21,7 @@ public class RotaController {
 
 	Rota rota = new Rota();
 	List<Rota> rotas;
+	List<Cliente> clientes;	
 
 	@Autowired
 	RotaService rotaService;
@@ -105,7 +105,7 @@ public class RotaController {
 			UtilsGeral.adicionarMsgInfo("Rota excluída com sucesso.");
 		} catch (Exception e) {
 			e.printStackTrace();
-			UtilsGeral.adicionarMsgInfo("Há cidades relacionadas nessa rota. Impossível excluir.");
+			UtilsGeral.adicionarMsgErro("Há clientes relacionados nessa rota. Impossível excluir.");
 		}
 
 		UtilsGeral.redirecionar("/rota/listar.xhtml");

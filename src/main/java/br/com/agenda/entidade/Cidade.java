@@ -23,9 +23,6 @@ public class Cidade implements Serializable {
 	private String nome;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	private Rota rota;
-
-	@ManyToOne(cascade = CascadeType.ALL)
 	private Estado estado;
 
 	@OneToMany(mappedBy = "cidade")
@@ -83,14 +80,6 @@ public class Cidade implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-
-	public Rota getRota() {
-		return rota;
-	}
-
-	public void setRota(Rota rota) {
-		this.rota = rota;
 	}
 
 }

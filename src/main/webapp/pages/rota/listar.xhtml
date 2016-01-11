@@ -24,8 +24,8 @@
 					</p:column>
 
 					<p:column style="width: 20%">
-						<p:commandButton oncomplete="PF('cidadesRota').show();"
-							process="@this" update="cidadesRota" label="Ver cidades"
+						<p:commandButton oncomplete="PF('clientesRota').show();"
+							process="@this" update="clientesRota" label="Ver cidades"
 							icon="ui-icon-carat-1-ne">
 							<f:setPropertyActionListener value="#{r}"
 								target="#{rotaController.rota}" />
@@ -44,23 +44,19 @@
 			</p:fieldset>
 		</div>
 
-		<p:dialog id="cidadesRota" widgetVar="cidadesRota" width="600px"
-			resizable="false" header="Cidades da rota selecionada" modal="true">
+		<p:dialog id="clientesRota" widgetVar="clientesRota" width="600px"
+			resizable="false" header="Clientes da rota selecionada" modal="true">
 
 			<h3>
 				<p:outputLabel value="#{rotaController.rota.descricao}" />
 			</h3>
 
 			<p:dataTable id="tableCidades" var="c"
-				value="#{rotaController.rota.cidades}"
-				emptyMessage="Nenhuma cidade atribuída para essa rota.">
+				value="#{rotaController.rota.clientes}"
+				emptyMessage="Nenhum cliente atribuído para essa rota.">
 
-				<p:column headerText="Cidade">
+				<p:column headerText="Nome">
 					<h:outputText value="#{c.nome}" />
-				</p:column>
-
-				<p:column headerText="Estado">
-					<h:outputText value="#{c.estado.nome}" />
 				</p:column>
 			</p:dataTable>
 

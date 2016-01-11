@@ -25,7 +25,7 @@ public class Rota implements Serializable {
 	private Integer ordem;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "rota")
-	private List<Cidade> cidades;
+	private List<Cliente> clientes;
 
 	public Long getId() {
 		return id;
@@ -41,14 +41,6 @@ public class Rota implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-
-	public List<Cidade> getCidades() {
-		return cidades;
-	}
-
-	public void setCidades(List<Cidade> cidades) {
-		this.cidades = cidades;
 	}
 
 	public Integer getOrdem() {
@@ -82,6 +74,14 @@ public class Rota implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
 	}
 
 }

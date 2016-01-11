@@ -32,14 +32,6 @@ public class CidadeService {
 
 		List<Cidade> cidades = dao.listarTodos();
 
-		if (cidades != null) {
-			for (Cidade cidade : cidades) {
-				if (cidade.getRota() != null) {
-					cidade.getRota().getId();
-				}
-			}
-		}
-
 		return cidades;
 	}
 

@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Usuario implements Serializable {
@@ -19,14 +20,17 @@ public class Usuario implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+	private String nome;
 	private String login;
 	private String senha;
 	private String email;
 	private Boolean ativo;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Perfil perfil;
+
+	@OneToOne(mappedBy = "usuario")
+	private Vendedor vendedor;
 
 	public Long getId() {
 		return id;
@@ -100,5 +104,21 @@ public class Usuario implements Serializable {
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
 	}
-	
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Vendedor getVendedor() {
+		return vendedor;
+	}
+
+	public void setVendedor(Vendedor vendedor) {
+		this.vendedor = vendedor;
+	}
+
 }

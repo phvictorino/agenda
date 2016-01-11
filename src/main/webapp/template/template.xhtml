@@ -23,7 +23,8 @@
 	</div>
 	<h:form>
 
-		<p:menubar rendered="#{loginController.estaUsuarioLogado()}">
+		<p:menubar
+			rendered="#{loginController.verificarSeExistUsuarioLogado()}">
 			<p:menuitem style="margin-left: 10px" />
 			<p:menuitem value="Ínicio" url="/pages/index.xhtml"
 				icon="ui-icon-note" style="width: 65px" />
@@ -71,19 +72,22 @@
 						actionListener="#{estadoController.listar}"
 						icon="ui-icon-document" />
 				</p:submenu>
-				<p:submenu label="Vendedores">
-					<p:menuitem value="Adicionar"
-						actionListener="#{estadoController.novo}"
-						icon="ui-icon-circle-plus" />
-					<p:submenu label="Gerenciar">
-						<p:menuitem value="" actionListener="#" icon="ui-icon-document" />
-					</p:submenu>
-				</p:submenu>
+			</p:submenu>
+			<p:submenu label="Vendedores"
+				rendered="#{facesContext.externalContext.isUserInRole('ROLE_ADMIN')}"
+				icon="ui-icon-contact">
+				<p:menuitem value="Adicionar"
+					actionListener="#{estadoController.novo}"
+					icon="ui-icon-circle-plus" />
+				<p:menuitem value="Listar" actionListener="#"
+					icon="ui-icon-document" />
 			</p:submenu>
 			<p:submenu icon="ui-icon-key" label="Usuários"
 				rendered="#{facesContext.externalContext.isUserInRole('ROLE_ADMIN')}">
-				<p:menuitem icon="ui-icon-document" value="Listar" />
-				<p:menuitem icon="ui-icon-circle-plus" value="Adicionar" />
+				<p:menuitem icon="ui-icon-circle-plus" value="Adicionar"
+					actionListener="#{usuarioController.novo()}" />
+				<p:menuitem icon="ui-icon-document" value="Listar"
+					actionListener="#{usuarioController.listar()}" />
 			</p:submenu>
 			<p:menuitem icon="ui-icon-close" url="/j_spring_security_logout"
 				value="Logout" style="width: 75px;" />

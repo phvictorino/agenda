@@ -36,8 +36,8 @@ public class RotaService {
 
 		if (rotas != null) {
 			for (Rota rota : rotas) {
-				if (rota.getCidades() != null) {
-					rota.getCidades().size();
+				if (rota.getClientes() != null) {
+					rota.getClientes().size();
 				}
 			}
 		}

@@ -14,17 +14,19 @@ import br.com.agenda.entidade.Cidade;
 import br.com.agenda.entidade.Cliente;
 import br.com.agenda.entidade.Contato;
 import br.com.agenda.entidade.Estado;
+import br.com.agenda.entidade.Rota;
 import br.com.agenda.entidade.TipoContato;
 import br.com.agenda.service.CidadeService;
 import br.com.agenda.service.ClienteService;
 import br.com.agenda.service.ContatoService;
 import br.com.agenda.service.EstadoService;
+import br.com.agenda.service.RotaService;
 import br.com.agenda.service.TipoContatoService;
 import br.com.agenda.utils.UtilsGeral;
 
 @Controller
 @ManagedBean
-//@Scope("view")
+// @Scope("view")
 public class ClienteController {
 
 	private Cliente cliente = new Cliente();
@@ -38,7 +40,11 @@ public class ClienteController {
 	private Long idTipoContatoSelecionado;
 	private String nomeContato;
 	private Integer situacaoCliente;
-	
+	private Long idRotaSelecionada;
+	private Rota rotaSelecionada;
+	private List<Rota> rotas;
+	private Cidade cidadeSelecionada;
+
 	private Integer clienteAtivo = Cliente.CLIENTE_ATIVO;
 	private Integer clienteInativo = Cliente.CLIENTE_INATIVO;
 
@@ -47,6 +53,9 @@ public class ClienteController {
 	private String nomeClienteFiltro;
 
 	private String nomeCliente;
+
+	@Autowired
+	RotaService rotaService;
 
 	@Autowired
 	ClienteService clienteService;
@@ -74,6 +83,7 @@ public class ClienteController {
 		listaContatos = new ArrayList<Contato>();
 		listaCidades = cidadeService.listarTodos();
 		listaClientes = clienteService.listarTodosAtivos();
+		rotas = rotaService.listarTodos();
 	}
 
 	public void listar() {
@@ -94,34 +104,58 @@ public class ClienteController {
 		listaContatos = new ArrayList<Contato>();
 		nomeCliente = "";
 		idTipoContatoSelecionado = null;
+		idRotaSelecionada = null;
+		this.rotas = rotaService.listarTodos();
 		UtilsGeral.redirecionar("/cliente/form.xhtml");
-		
-		
+
 	}
 
 	public void salvar() {
 
-		Cidade cidadeSelecionada = cidadeService.buscarPorId(idCidadeSelecionada);
-		
-		cliente.setSituacao(situacaoCliente);
-		cliente.setNome(nomeCliente);
-		cliente.setContatos(listaContatos);
-		cliente.setCidade(cidadeSelecionada);
-		clienteService.salvar(cliente);
-		listaClientes = clienteService.listarTodos();
+		if (validaForm()) {
 
-		UtilsGeral.adicionarMsgInfo("Usuário salvo com sucesso!");
+			cliente.setSituacao(situacaoCliente);
+			cliente.setNome(nomeCliente);
+			cliente.setContatos(listaContatos);
+			cliente.setCidade(cidadeSelecionada);
+			cliente.setRota(rotaSelecionada);
+			clienteService.salvar(cliente);
+			listaClientes = clienteService.listarTodos();
 
-		this.listar();
+			UtilsGeral.adicionarMsgInfo("Cliente salvo com sucesso!");
+
+			this.listar();
+		}
 	}
 
-	//	public List<Cliente> getListaClientes() {
-	//		return clienteService.listarTodos();
-	//	}
+	private boolean validaForm() {
 
-	//	public List<Cidade> getListaCidades() {
-	//		return cidadeService.listarTodos();
-	//	}
+		if (this.nomeCliente == null || this.nomeCliente.isEmpty()) {
+			UtilsGeral.adicionarMsgErro("Nome do cliente não preenchido.");
+			return false;
+		}
+
+		if (this.idCidadeSelecionada == null) {
+			UtilsGeral.adicionarMsgErro("Cidade não selecionada.");
+			return false;
+		} else {
+			cidadeSelecionada = cidadeService.buscarPorId(idCidadeSelecionada);
+		}
+
+		if (this.idRotaSelecionada != null) {
+			this.rotaSelecionada = rotaService.buscarPorId(this.idRotaSelecionada);
+		}
+
+		return true;
+	}
+
+	// public List<Cliente> getListaClientes() {
+	// return clienteService.listarTodos();
+	// }
+
+	// public List<Cidade> getListaCidades() {
+	// return cidadeService.listarTodos();
+	// }
 
 	public void adicionarContato() {
 
@@ -166,6 +200,8 @@ public class ClienteController {
 		this.listaTiposContato = tipoContatoService.listarTodos();
 		idCidadeSelecionada = clienteSelecionado.getCidade().getId();
 		nomeCliente = clienteSelecionado.getNome();
+		idRotaSelecionada = clienteSelecionado.getRota().getId();
+		this.rotas = rotaService.listarTodos();
 
 		UtilsGeral.redirecionar("/cliente/form.xhtml");
 
@@ -177,7 +213,8 @@ public class ClienteController {
 
 	public void aplicarFiltrosClientes() {
 
-		List<Cliente> clientes = clienteService.buscarPorFiltros(idCidadeFiltro, idEstadoFiltro, nomeClienteFiltro, situacaoCliente);
+		List<Cliente> clientes = clienteService.buscarPorFiltros(idCidadeFiltro, idEstadoFiltro, nomeClienteFiltro,
+				situacaoCliente);
 
 		if (clientes != null) {
 			this.listaClientes = clientes;
@@ -331,10 +368,33 @@ public class ClienteController {
 	public void setClienteInativo(Integer clienteInativo) {
 		this.clienteInativo = clienteInativo;
 	}
-	
+
 	public boolean isTipoContatoSelecionado() {
 		return (this.idTipoContatoSelecionado != null);
 	}
 
+	public Long getIdRotaSelecionada() {
+		return idRotaSelecionada;
+	}
+
+	public void setIdRotaSelecionada(Long idRotaSelecionada) {
+		this.idRotaSelecionada = idRotaSelecionada;
+	}
+
+	public Rota getRotaSelecionada() {
+		return rotaSelecionada;
+	}
+
+	public void setRotaSelecionada(Rota rotaSelecionada) {
+		this.rotaSelecionada = rotaSelecionada;
+	}
+
+	public List<Rota> getRotas() {
+		return rotas;
+	}
+
+	public void setRotas(List<Rota> rotas) {
+		this.rotas = rotas;
+	}
 
 }

@@ -4,21 +4,27 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
-
 	<security:http use-expressions="true" auto-config="true">
-		<security:csrf disabled="true"/>
-		<security:intercept-url pattern="/pages/*"
-			access="isAuthenticaded()" />
+		<security:csrf disabled="true" />
 
-		<security:intercept-url pattern="/pages/*"
-			access="hasAuthority('ROLE_ADMIN')" />
+		<!-- <security:intercept-url pattern="/pages**" -->
+		<!-- access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" /> -->
 
-		<security:intercept-url pattern="/login.xhtml" access="permitAll" />
-		
+		<security:intercept-url pattern="/pages/admin/**"
+			access="hasRole('ROLE_ADMIN')" />
+
+		<security:intercept-url pattern="/pages/**"
+			access="isAuthenticated()" />
+
+		<security:intercept-url pattern="/login.xhtml"
+			access="permitAll" />
+
 		<security:form-login authentication-failure-url="/login.xhtml?erro=true"
 			default-target-url="/pages/index.xhtml" login-page="/login.xhtml"
-			username-parameter="usuario" password-parameter="senha" login-processing-url="/j_spring_security_check" />
-		<security:logout logout-success-url="/login.xhtml" logout-url="/j_spring_security_logout"/>
+			username-parameter="usuario" password-parameter="senha"
+			login-processing-url="/j_spring_security_check" />
+		<security:logout logout-success-url="/login.xhtml"
+			logout-url="/j_spring_security_logout" />
 	</security:http>
 
 	<security:authentication-manager>

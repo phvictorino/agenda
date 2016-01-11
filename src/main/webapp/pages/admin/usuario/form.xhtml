@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Formulário de Tipo de Contato</ui:define>
+
+	<ui:define name="conteudo">
+		<div align="center">
+			<p:fieldset legend="Cadastro de Tipo de Contato">
+				<h:form id="formUsuario">
+					<h:panelGrid columns="2">
+
+						<p:outputLabel for="nome" value="Nome: " />
+						<p:inputText id="nome" value="#{usuarioController.usuario.nome}" />
+
+						<p:outputLabel for="login" value="Login do usuário: " />
+						<p:inputText id="login" value="#{usuarioController.usuario.login}" />
+
+						<p:outputLabel for="email" value="Email: " />
+						<p:inputText id="email" value="#{usuarioController.usuario.email}" />
+
+						<p:outputLabel for="senha1" value="Senha: " />
+						<p:password id="senha1" value="#{usuarioController.usuario.senha}"
+							match="senha2" />
+
+						<p:outputLabel for="senha2" value="Confirme a senha: " />
+						<p:password id="senha2" value="#{usuarioController.usuario.senha}" />
+
+						<p:outputLabel for="perfil" value="Perfil do usuário: " />
+						<p:selectOneMenu id="perfil"
+							value="#{usuarioController.idPerfilSelecionado}">
+							<f:selectItem itemLabel="Selecione" itemValue="" />
+							<f:selectItems value="#{usuarioController.perfis}" var="p"
+								itemLabel="#{p.descricao}" itemValue="#{p.id}" />
+						</p:selectOneMenu>
+
+						<p:outputLabel for="vendedor" value="Vendedor do usuário: " />
+						<p:selectOneMenu id="vendedor"
+							value="#{usuarioController.idVendedorSelecionado}">
+							<f:selectItem itemLabel="Selecione" itemValue="" />
+							<f:selectItems value="#{usuarioController.vendedores}" var="v"
+								itemLabel="#{v.nome}" itemValue="#{v.id}" />
+						</p:selectOneMenu>
+
+						<div align="center">
+							<p:commandButton style="margin-top: 10px"
+								process="@this formUsuario" update="formUsuario"
+								actionListener="#{usuarioController.salvar}" value="Salvar" />
+						</div>
+					</h:panelGrid>
+				</h:form>
+			</p:fieldset>
+		</div>
+	</ui:define>
+
+
+</ui:composition>
