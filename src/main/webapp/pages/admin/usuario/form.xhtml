@@ -40,14 +40,6 @@
 								itemLabel="#{p.descricao}" itemValue="#{p.id}" />
 						</p:selectOneMenu>
 
-						<p:outputLabel for="vendedor" value="Vendedor do usuário: " />
-						<p:selectOneMenu id="vendedor"
-							value="#{usuarioController.idVendedorSelecionado}">
-							<f:selectItem itemLabel="Selecione" itemValue="" />
-							<f:selectItems value="#{usuarioController.vendedores}" var="v"
-								itemLabel="#{v.nome}" itemValue="#{v.id}" />
-						</p:selectOneMenu>
-
 						<div align="center">
 							<p:commandButton style="margin-top: 10px"
 								process="@this formUsuario" update="formUsuario"

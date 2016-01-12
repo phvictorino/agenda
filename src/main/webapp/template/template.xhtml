@@ -47,6 +47,29 @@
 				</p:submenu>
 			</p:submenu>
 
+			<p:submenu label="Vendedores"
+				rendered="#{facesContext.externalContext.isUserInRole('ROLE_ADMIN')}"
+				icon="ui-icon-contact">
+				<p:menuitem value="Adicionar"
+					actionListener="#{vendedorController.novo}"
+					icon="ui-icon-circle-plus" />
+				<p:menuitem value="Listar"
+					actionListener="#{vendedorController.listar}"
+					icon="ui-icon-document" />
+			</p:submenu>
+
+			<p:submenu label="Fornecedores"
+				rendered="#{facesContext.externalContext.isUserInRole('ROLE_ADMIN')}"
+				icon="ui-icon-cart">
+				<p:menuitem value="Adicionar"
+					actionListener="#{fornecedorController.novo}"
+					icon="ui-icon-circle-plus" />
+				<p:menuitem value="Listar"
+					actionListener="#{fornecedorController.listar}"
+					icon="ui-icon-document" />
+			</p:submenu>
+
+
 
 			<p:submenu label="Rotas" icon="ui-icon-signal-diag">
 				<p:menuitem value="Adicionar" icon="ui-icon-circle-plus"
@@ -73,21 +96,21 @@
 						icon="ui-icon-document" />
 				</p:submenu>
 			</p:submenu>
-			<p:submenu label="Vendedores"
-				rendered="#{facesContext.externalContext.isUserInRole('ROLE_ADMIN')}"
-				icon="ui-icon-contact">
-				<p:menuitem value="Adicionar"
-					actionListener="#{estadoController.novo}"
-					icon="ui-icon-circle-plus" />
-				<p:menuitem value="Listar" actionListener="#"
-					icon="ui-icon-document" />
-			</p:submenu>
+
 			<p:submenu icon="ui-icon-key" label="Usuários"
 				rendered="#{facesContext.externalContext.isUserInRole('ROLE_ADMIN')}">
 				<p:menuitem icon="ui-icon-circle-plus" value="Adicionar"
 					actionListener="#{usuarioController.novo()}" />
 				<p:menuitem icon="ui-icon-document" value="Listar"
 					actionListener="#{usuarioController.listar()}" />
+
+				<p:submenu icon="ui-icon-locked" label="Perfis">
+					<p:menuitem icon="ui-icon-circle-plus" value="Adicionar"
+						actionListener="#" />
+					<p:menuitem icon="ui-icon-document" value="Listar"
+						actionListener="#" />
+				</p:submenu>
+
 			</p:submenu>
 			<p:menuitem icon="ui-icon-close" url="/j_spring_security_logout"
 				value="Logout" style="width: 75px;" />

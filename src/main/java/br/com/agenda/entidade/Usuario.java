@@ -6,15 +6,14 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6499359881447982552L;
 
 	@Id
@@ -28,9 +27,6 @@ public class Usuario implements Serializable {
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Perfil perfil;
-
-	@OneToOne(mappedBy = "usuario")
-	private Vendedor vendedor;
 
 	public Long getId() {
 		return id;
@@ -111,14 +107,6 @@ public class Usuario implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public Vendedor getVendedor() {
-		return vendedor;
-	}
-
-	public void setVendedor(Vendedor vendedor) {
-		this.vendedor = vendedor;
 	}
 
 }

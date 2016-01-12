@@ -108,7 +108,6 @@ public class UsuarioController {
 
 		if (idVendedorSelecionado != null) {
 			this.vendedorSelecinado = vendedorService.buscarPorId(idVendedorSelecionado);
-			this.usuario.setVendedor(vendedorSelecinado);
 		}
 
 		return true;
@@ -118,9 +117,6 @@ public class UsuarioController {
 
 		senhaAntiga = usuario.getSenha();
 
-		if (this.usuario.getVendedor() != null) {
-			this.idVendedorSelecionado = this.usuario.getVendedor().getId();
-		}
 
 		this.idPerfilSelecionado = this.usuario.getPerfil().getId();
 

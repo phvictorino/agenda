@@ -7,11 +7,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "id")
-public class Cliente extends Pessoa implements Serializable {
+public class Cliente extends Usuario implements Serializable {
 
 	private static final long serialVersionUID = -1375244853694540763L;
 

@@ -23,5 +23,9 @@ public class VendedorService {
 	public List<Vendedor> listarTodos() {
 		return vendedorDAO.listarTodos();
 	}
+	
+	public Vendedor salvar(Vendedor vendedor) {
+		return vendedorDAO.salvar(vendedor);
+	}
 
 }

@@ -25,16 +25,20 @@ public class TestUsuario {
 
 	@Test
 	public void salvar() {
+		
+		//CADASTRO PARA INICIAR SISTEMA
+
+		Perfil perfil = new Perfil();
+		perfil.setDescricao("ROLE_ADMIN");
+		perfilService.salvar(perfil);
 
 		Usuario u = new Usuario();
-
 		u.setAtivo(true);
+		u.setNome("Administrador do sistema");
 		u.setEmail("pedro.victorino@gmail.com");
 		u.setLogin("admin");
-		Perfil p = perfilService.buscarPorId(new Long(9));
-		u.setPerfil(p);
+		u.setPerfil(perfil);
 		u.setSenha("123");
-		
 		usuarioService.salvar(u);
 
 	}

@@ -42,5 +42,10 @@ public class PerfilService {
 
 		return perfils;
 	}
+	
+	public Perfil buscarPorNome(String nome) {
+		return dao.buscarPorNome(nome);
+	}
+	
 
 }
