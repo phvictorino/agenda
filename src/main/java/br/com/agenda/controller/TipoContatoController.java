@@ -6,7 +6,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 
 import br.com.agenda.entidade.TipoContato;
@@ -17,16 +16,16 @@ import br.com.agenda.utils.UtilsGeral;
 @ManagedBean
 public class TipoContatoController {
 
-	TipoContato tipoContato;
+	private TipoContato tipoContato;
 
 	private String nomeTipoContato;
 
 	@Autowired
 	TipoContatoService tipoContatoService;
-
+	
 	@PostConstruct
 	public void init() {
-		tipoContato = new TipoContato();
+		this.tipoContato = new TipoContato();
 	}
 
 	public void listar() {
@@ -39,12 +38,12 @@ public class TipoContatoController {
 		UtilsGeral.redirecionar("/admin/tipoContato/form.xhtml");
 	}
 
-	public void editar() {
+	public void editar(TipoContato tipoContato) {
 		nomeTipoContato = tipoContato.getTipo();
 		UtilsGeral.redirecionar("/admin/tipoContato/form.xhtml");
 	}
 
-	public void excluir() {
+	public void excluir(TipoContato tipoContato) {
 
 		try {
 			tipoContatoService.deletar(tipoContato.getId());

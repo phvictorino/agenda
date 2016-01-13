@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Lista de Vendedores</ui:define>
+
+	<ui:define name="conteudo">
+		<div align="center">
+			<p:fieldset legend="Lista de Vendedores">
+
+				<p:dataTable id="tableVendedores" widgetVar="tableVendedores"
+					value="#{vendedorController.vendedores}" var="v" paginator="true"
+					emptyMessage="Nenhum registro encontrado.">
+
+					<p:column headerText="Nome">
+						<h:outputText value="#{v.nome}" />
+					</p:column>
+
+					<p:column headerText="Email">
+						<h:outputText value="#{v.email}" />
+					</p:column>
+
+					<p:column headerText="Login">
+						<h:outputText value="#{v.login}" />
+					</p:column>
+
+					<p:column headerText="Ações">
+
+						<p:commandButton actionListener="#{vendedorController.editar()}"
+							icon="ui-icon-pencil" update="@this" process="@this">
+							<f:setPropertyActionListener value="#{v}"
+								target="#{vendedorController.vendedor}"></f:setPropertyActionListener>
+						</p:commandButton>
+
+						<p:commandButton action="#{vendedorController.excluir()}"
+							icon="ui-icon-closethick" update="@this" process="@this">
+							<f:setPropertyActionListener value="#{v}"
+								target="#{vendedorController.vendedor}" />
+						</p:commandButton>
+
+					</p:column>
+
+				</p:dataTable>
+
+			</p:fieldset>
+		</div>
+	</ui:define>
+</ui:composition>

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 
 import br.com.agenda.dao.UsuarioDAO;
 import br.com.agenda.entidade.Usuario;
-import br.com.agenda.utils.UtilsGeral;
 
 @ManagedBean
 @Controller

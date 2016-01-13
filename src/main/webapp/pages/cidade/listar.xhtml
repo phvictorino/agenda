@@ -13,7 +13,7 @@
 	<ui:define name="conteudo">
 		<div align="center">
 			<p:fieldset legend="Lista de cidades">
-				<p:dataTable var="c" value="#{cidadeController.listaCidades}"
+				<p:dataTable var="c" value="#{cidadeController.listaCidades}" paginator="true"
 					id="tableCidades" emptyMessage="Nenhuma cidade encontrada.">
 					<p:column headerText="Nome">
 						<h:outputText value="#{c.nome}" />

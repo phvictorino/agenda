@@ -16,3 +16,7 @@ body {
 .ui-submenu {
 	margin: 5px;
 }
+
+label {
+	text-align: right;
+}

@@ -7,11 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
-
-import br.com.agenda.entidade.Usuario;
-import br.com.agenda.utils.UtilsGeral;
 
 @Repository
 public class GenericDAO<T> {

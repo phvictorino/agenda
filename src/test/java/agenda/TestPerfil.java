@@ -23,7 +23,7 @@ public class TestPerfil {
 
 		Perfil perfil = new Perfil();
 
-		perfil.setDescricao("ROLE_VENDEDOR");
+		perfil.setDescricao("ROLE_FORNECEDOR");
 
 		perfilService.salvar(perfil);
 

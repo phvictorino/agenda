@@ -2,7 +2,6 @@ package br.com.agenda.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -26,7 +25,6 @@ import br.com.agenda.utils.UtilsGeral;
 
 @Controller
 @ManagedBean
-// @Scope("view")
 public class ClienteController {
 
 	private Cliente cliente = new Cliente();

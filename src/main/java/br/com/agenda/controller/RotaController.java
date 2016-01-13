@@ -5,8 +5,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
-import org.primefaces.component.datatable.DataTable;
-import org.primefaces.event.ReorderEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -21,7 +19,7 @@ public class RotaController {
 
 	Rota rota = new Rota();
 	List<Rota> rotas;
-	List<Cliente> clientes;	
+	List<Cliente> clientes;
 
 	@Autowired
 	RotaService rotaService;
@@ -44,45 +42,44 @@ public class RotaController {
 		UtilsGeral.redirecionar("/rota/form.xhtml");
 	}
 
-	public void mudarOrdemLista(ReorderEvent e) {
-//		String tabela = ((DataTable) e.getSource()).getClientId();
-
-		DataTable myDatatable = (DataTable) e.getSource();
-
-		Rota rotaMovida = (Rota) myDatatable.getRowData();
-		// List<Rota> listaAposMover = (Rota) myDatatable
-
-//		if (rotaMovida != null) {
-//
-//			Integer ordemNova = e.getToIndex() + 1;
-//			Integer ordemAntiga = rotaMovida.getOrdem();
-//
-//			if (ordemNova > ordemAntiga) {
-//				for (Rota r : rotas) {
-//					if (r != null && !r.equals(rotaMovida)) {
-//						if (r.getOrdem() <= ordemNova && r.getOrdem() >= ordemAntiga) {
-//							r.setOrdem(r.getOrdem().intValue() - 1);
-//							rotaService.salvar(r);
-//						}
-//					}
-//				}
-//			} else {
-//				for (Rota r : rotas) {
-//					if (r != null && !r.equals(rotaMovida)) {
-//						if (r.getOrdem() >= ordemNova && r.getOrdem() <= ordemAntiga) {
-//							r.setOrdem(r.getOrdem().intValue() + 1);
-//							rotaService.salvar(r);
-//						}
-//					}
-//				}
-//			}
-//
-//			rotaMovida.setOrdem(ordemNova);
-//
-//			rotaService.salvar(rotaMovida);
-//		}
-
-	}
+	// public void mudarOrdemLista(ReorderEvent e) {
+	// String tabela = ((DataTable) e.getSource()).getClientId();
+	//
+	// DataTable myDatatable = (DataTable) e.getSource();
+	//
+	// Rota rotaMovida = (Rota) myDatatable.getRowData();
+	// List<Rota> listaAposMover = (Rota) myDatatable
+	//
+	// if (rotaMovida != null) {
+	//
+	// Integer ordemNova = e.getToIndex() + 1;
+	// Integer ordemAntiga = rotaMovida.getOrdem();
+	//
+	// if (ordemNova > ordemAntiga) {
+	// for (Rota r : rotas) {
+	// if (r != null && !r.equals(rotaMovida)) {
+	// if (r.getOrdem() <= ordemNova && r.getOrdem() >= ordemAntiga) {
+	// r.setOrdem(r.getOrdem().intValue() - 1);
+	// rotaService.salvar(r);
+	// }
+	// }
+	// }
+	// } else {
+	// for (Rota r : rotas) {
+	// if (r != null && !r.equals(rotaMovida)) {
+	// if (r.getOrdem() >= ordemNova && r.getOrdem() <= ordemAntiga) {
+	// r.setOrdem(r.getOrdem().intValue() + 1);
+	// rotaService.salvar(r);
+	// }
+	// }
+	// }
+	// }
+	//
+	// rotaMovida.setOrdem(ordemNova);
+	//
+	// rotaService.salvar(rotaMovida);
+	// }
+	// }
 
 	public void salvar() {
 		rotaService.salvar(rota);

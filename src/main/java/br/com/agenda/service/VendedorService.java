@@ -28,4 +28,8 @@ public class VendedorService {
 		return vendedorDAO.salvar(vendedor);
 	}
 
+	public void excluir(Long id) {
+		this.vendedorDAO.deletar(id);
+	}
+
 }

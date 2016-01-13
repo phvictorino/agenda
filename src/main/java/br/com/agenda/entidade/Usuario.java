@@ -23,6 +23,7 @@ public class Usuario implements Serializable {
 	private String login;
 	private String senha;
 	private String email;
+	private String telefone;
 	private Boolean ativo;
 
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -107,6 +108,14 @@ public class Usuario implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 }

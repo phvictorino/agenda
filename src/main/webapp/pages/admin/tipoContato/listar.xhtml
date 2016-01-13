@@ -12,7 +12,7 @@
 
 	<ui:define name="conteudo">
 		<p:fieldset legend="Lista de Tipo de Contatos">
-			<p:dataTable var="tp" id="tableTiposContato"
+			<p:dataTable var="tp" id="tableTiposContato" paginator="true"
 				value="#{tipoContatoController.listaTiposContato}"
 				emptyMessage="Nenhum tipo de contrato encontrado.">
 				<p:column headerText="Tipo">
@@ -20,19 +20,13 @@
 				</p:column>
 
 				<p:column>
-					<p:commandButton actionListener="#{tipoContatoController.editar}"
+					<p:commandButton actionListener="#{tipoContatoController.editar(tp)}"
 						icon="ui-icon-pencil">
-						<f:setPropertyActionListener value="#{tp}"
-							target="#{tipoContatoController.tipoContato}"></f:setPropertyActionListener>
 					</p:commandButton>
 
-					<p:commandButton action="#{tipoContatoController.excluir}"
+					<p:commandButton action="#{tipoContatoController.excluir(tp)}"
 						icon="ui-icon-closethick" update="tableTiposContato"
 						process="tableTiposContato">
-
-						<f:setPropertyActionListener value="#{tp}"
-							target="#{tipoContatoController.tipoContato}" />
-
 					</p:commandButton>
 				</p:column>
 

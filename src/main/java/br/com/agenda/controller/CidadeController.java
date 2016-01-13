@@ -10,8 +10,6 @@ import org.springframework.stereotype.Controller;
 
 import br.com.agenda.entidade.Cidade;
 import br.com.agenda.entidade.Estado;
-import br.com.agenda.entidade.Fornecedor;
-import br.com.agenda.entidade.Rota;
 import br.com.agenda.service.CidadeService;
 import br.com.agenda.service.EstadoService;
 import br.com.agenda.service.RotaService;
@@ -125,6 +123,5 @@ public class CidadeController {
 	public void setIdEstadoSelecionado(Long idEstadoSelecionado) {
 		this.idEstadoSelecionado = idEstadoSelecionado;
 	}
-
 
 }

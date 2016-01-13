@@ -18,7 +18,7 @@ public class PerfilDAO extends GenericDAO<Perfil> {
 		
 		if (nome != null) {
 			
-			 Query query = entityManager.createQuery("SELECT p FROM Perfil WHERE p.descricao LIKE '%" + nome + "%'");
+			 Query query = entityManager.createQuery("SELECT p FROM Perfil p WHERE p.descricao LIKE '%" + nome + "%'");
 			 
 			 try {
 				 return (Perfil) query.getSingleResult();

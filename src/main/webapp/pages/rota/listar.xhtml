@@ -13,7 +13,7 @@
 	<ui:define name="conteudo">
 		<div align="center">
 			<p:fieldset legend="Listar rotas">
-				<p:dataTable var="r" value="#{rotaController.listaTodos}"
+				<p:dataTable var="r" value="#{rotaController.listaTodos}" paginator="true"
 					emptyMessage="Nenhuma rota encontrada." id="tableRotas"
 					draggableRows="true">
 					<p:ajax event="rowReorder"

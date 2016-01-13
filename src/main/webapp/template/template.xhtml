@@ -18,7 +18,7 @@
 <h:body>
 	<p:growl id="mensagens" autoUpdate="true" life="5000" showDetail="true" />
 	<div style="margin: 10px;" align="center">
-		<h:graphicImage value="/resources/images/banner-top.png"
+		<h:graphicImage value="/resources/images/banner-dist.jpg"
 			url="#{facesContext.externalContext.requestContextPath}/" />
 	</div>
 	<h:form>
@@ -118,9 +118,7 @@
 	</h:form>
 	<p:spacer height="2px" />
 	<div style="text-align: center; margin: 0 auto; width: 80%">
-		<p:panel>
-			<ui:insert name="conteudo"></ui:insert>
-		</p:panel>
+		<ui:insert name="conteudo"></ui:insert>
 	</div>
 	<p:spacer height="2px" />
 	<p:panel>

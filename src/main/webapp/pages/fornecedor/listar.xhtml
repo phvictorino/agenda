@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Lista de Fornecedores</ui:define>
+
+	<ui:define name="conteudo">
+		<div align="center">
+			<p:fieldset legend="Lista de Fornecedores">
+
+				<p:dataTable id="tableVendedores" widgetVar="tableVendedores"
+					value="#{fornecedorController.fornecedores}" var="f"
+					paginator="true" emptyMessage="Nenhum registro encontrado.">
+
+					<p:column headerText="Nome">
+						<h:outputText value="#{f.nome}" />
+					</p:column>
+
+					<p:column headerText="CNPJ">
+						<h:outputText value="#{f.cnpj}" />
+					</p:column>
+
+					<p:column headerText="Nome Empresa">
+						<h:outputText value="#{f.nomeEmpresa}" />
+					</p:column>
+
+					<p:column headerText="Login">
+						<h:outputText value="#{f.login}" />
+					</p:column>
+
+					<p:column headerText="Ações">
+
+						<p:commandButton actionListener="#{fornecedorController.editar()}"
+							icon="ui-icon-pencil" update="@this" process="@this">
+							<f:setPropertyActionListener value="#{f}"
+								target="#{fornecedorController.fornecedor}"></f:setPropertyActionListener>
+						</p:commandButton>
+
+						<p:commandButton action="#{fornecedorController.excluir()}"
+							icon="ui-icon-closethick" update="@this" process="@this">
+							<f:setPropertyActionListener value="#{f}"
+								target="#{fornecedorController.fornecedor}" />
+						</p:commandButton>
+
+					</p:column>
+
+				</p:dataTable>
+
+			</p:fieldset>
+
+		</div>
+
+	</ui:define>
+
+</ui:composition>

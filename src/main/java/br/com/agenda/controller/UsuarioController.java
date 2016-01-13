@@ -117,7 +117,6 @@ public class UsuarioController {
 
 		senhaAntiga = usuario.getSenha();
 
-
 		this.idPerfilSelecionado = this.usuario.getPerfil().getId();
 
 		UtilsGeral.redirecionar("/admin/usuario/form.xhtml");

@@ -11,8 +11,6 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 public class UtilsGeral {
 

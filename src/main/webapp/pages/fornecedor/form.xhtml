@@ -8,41 +8,58 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:define name="titulo">Formulário de Vendedor</ui:define>
+	<ui:define name="titulo">Formulário de Fornecedor</ui:define>
 
 	<ui:define name="conteudo">
 		<div align="center">
-			<p:fieldset legend="Cadastro de Vendedor">
-				<h:form id="formVendedor">
+			<p:fieldset legend="Cadastro de Fornecedor">
+
+				<h:form id="formFornecedor">
+
 					<h:panelGrid columns="2">
 
 						<p:outputLabel for="nome" value="Nome completo: " />
-						<p:inputText id="nome" value="#{vendedorController.vendedor.nome}" />
+						<p:inputText id="nome"
+							value="#{fornecedorController.fornecedor.nome}" />
+
+						<p:outputLabel for="nomeEmpresa" value="Nome Empresa: " />
+						<p:inputText id="nomeEmpresa"
+							value="#{fornecedorController.fornecedor.nomeEmpresa}" />
+
+						<p:outputLabel for="cnpj" value="CNPJ: " />
+						<p:inputText id="cnpj"
+							value="#{fornecedorController.fornecedor.cnpj}" />
 
 						<p:outputLabel for="email" value="Email: " />
 						<p:inputText id="email"
-							value="#{vendedorController.vendedor.email}" />
+							value="#{fornecedorController.fornecedor.email}" />
 
 						<p:outputLabel for="login" value="Login: " />
 						<p:inputText id="login"
-							value="#{vendedorController.vendedor.login}" />
+							value="#{fornecedorController.fornecedor.login}" />
 
 						<p:outputLabel for="senha1" value="Senha: " />
 						<p:password id="senha1"
-							value="#{vendedorController.vendedor.senha}" match="senha2" />
+							value="#{fornecedorController.fornecedor.senha}" match="senha2" />
 
 						<p:outputLabel for="senha2" value="Confirme a senha: " />
 						<p:password id="senha2"
-							value="#{vendedorController.vendedor.senha}" />
+							value="#{fornecedorController.fornecedor.senha}" />
 
 						<div align="center">
-							<p:commandButton style="margin-top: 10px" process="@this formVendedor" update="@this"
-								actionListener="#{vendedorController.salvar}" value="Salvar" />
+							<p:commandButton style="margin-top: 10px"
+								process="@this formFornecedor" update="@this"
+								actionListener="#{fornecedorController.salvar()}" value="Salvar" />
 						</div>
-						
+
 					</h:panelGrid>
+
 				</h:form>
+
 			</p:fieldset>
+
 		</div>
+
 	</ui:define>
+
 </ui:composition>

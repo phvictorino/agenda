@@ -16,19 +16,23 @@
 				<div style="color: red;">Login ou senha inválidos.</div>
 			</p:panel>
 
-			<p:spacer height="5" />
+			<p:panel style="width: 50%">
 
-			<form action="j_spring_security_check" method="post">
-				<h:panelGrid columns="2">
+				<h3>Faça seu login para acessar o sistema</h3>
+
+				<form action="j_spring_security_check" method="post">
+					<h:panelGrid columns="2">
 					Login:
 					<h:inputText id="usuario" />
 
 					Senha:
 					<h:inputSecret id="senha" />
 
-				</h:panelGrid>
-				<h:commandButton style="margin-top: 10px" value="Autenticar" />
-			</form>
+					</h:panelGrid>
+					<h:commandButton style="margin-top: 10px" value="Autenticar" />
+				</form>
+
+			</p:panel>
 		</div>
 	</ui:define>
 

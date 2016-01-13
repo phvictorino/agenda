@@ -13,7 +13,7 @@
 	<ui:define name="conteudo">
 		<div align="center">
 			<p:fieldset legend="Lista de estados">
-				<p:dataTable var="e" value="#{estadoController.listaEstados}"
+				<p:dataTable var="e" value="#{estadoController.listaEstados}" paginator="true"
 					id="tableEstados" emptyMessage="Nenhum estado encontrado.">
 					<p:column headerText="Nome">
 						<h:outputText value="#{e.nome}" />
@@ -23,7 +23,7 @@
 						<h:outputText value="#{e.uf}" />
 					</p:column>
 
-					<p:column>
+					<p:column headerText="Ações">
 						<p:commandButton actionListener="#{estadoController.editar}"
 							icon="ui-icon-pencil">
 							<f:setPropertyActionListener value="#{e}"
