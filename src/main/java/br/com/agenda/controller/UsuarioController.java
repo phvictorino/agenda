@@ -144,6 +144,10 @@ public class UsuarioController {
 		return true;
 	}
 
+	public String tipoUsuario(Usuario usuario) {
+		return usuario.getClass().getSimpleName();
+	}
+
 	// ---- getters and setters
 
 	public Usuario getUsuario() {

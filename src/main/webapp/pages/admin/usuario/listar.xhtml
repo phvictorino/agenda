@@ -25,10 +25,11 @@
 					<p:column headerText="Login">
 						<h:outputText value="#{usu.login}" />
 					</p:column>
-
-					<p:column headerText="Vendedor">
-						<h:outputText value="#{usu.vendedor.nome}" />
+					
+					<p:column headerText="Tipo de usuário">
+						<h:outputText value="#{usuarioController.tipoUsuario(usu)}"/>
 					</p:column>
+
 
 					<p:column headerText="Perfil de permissões">
 						<h:outputText value="#{usu.perfil.descricao}" />

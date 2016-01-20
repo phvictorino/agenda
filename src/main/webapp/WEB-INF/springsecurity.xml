@@ -7,6 +7,9 @@
 	<security:http use-expressions="true" auto-config="true">
 		<security:csrf disabled="true" />
 
+		<!-- <security:access-denied-handler -->
+		<!-- error-page="/acesso-negado.xhtml" /> -->
+
 		<!-- <security:intercept-url pattern="/pages**" -->
 		<!-- access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" /> -->
 
